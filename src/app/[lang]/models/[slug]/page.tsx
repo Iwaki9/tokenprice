@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { BudgetControls } from "@/components/budget-controls";
 import { CostEstimator } from "@/components/cost-estimator";
 import { DemoTag, MonitorBadge, SectionHead, VendorMark } from "@/components/ui";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
+import { modelFaq, modelSeoParagraph } from "@/lib/seo-copy";
 import { date, fill, latency, pct, tokens, usd } from "@/lib/format";
 import { dictionaries } from "@/lib/i18n";
 import { buildBoard, mixById } from "@/lib/ranking";
@@ -137,6 +139,26 @@ export default async function ModelPage({
   const related = db.models
     .filter((m) => m.vendor === model.vendor && m.slug !== model.slug)
     .slice(0, 6);
+
+  const seoFacts = {
+    name: model.name,
+    vendor: vendor?.name ?? model.vendor,
+    input: model.official.input,
+    output: model.official.output,
+    cacheRead: model.official.cacheRead ?? null,
+    contextWindow: model.contextWindow ?? null,
+    cheapest: rows[0]
+      ? {
+          name: rows[0].provider.name,
+          input: rows[0].quote.input,
+          output: rows[0].quote.output,
+          savings: rows[0].savings,
+          isDemo: !!rows[0].provider.isDemo,
+        }
+      : null,
+    providerCount: rows.length,
+  };
+  const faqItems = modelFaq(lang, seoFacts);
 
   const hrefFor = (overrides: Record<string, string | number | undefined>) => {
     const params = new URLSearchParams();
@@ -431,6 +453,11 @@ export default async function ModelPage({
         <section className="mt-12">
           <SectionHead title={dict.model.relatedTitle} />
           <div className="flex flex-wrap gap-2">
+            {rows.length > 0 ? (
+              <Link href={`/${lang}/cheapest/${model.slug}`} className="chip !border-brand !text-brand-ink">
+                {lang === "ru" ? `Где ${model.name} дешевле →` : `Cheapest ${model.name} →`}
+              </Link>
+            ) : null}
             {related.map((item) => (
               <Link key={item.slug} href={`/${lang}/models/${item.slug}`} className="chip">
                 {item.name}
@@ -442,6 +469,30 @@ export default async function ModelPage({
           </div>
         </section>
       ) : null}
+
+      <section className="mt-12 max-w-3xl">
+        <SectionHead
+          title={lang === "ru" ? "Частые вопросы" : "Frequently asked questions"}
+          note={lang === "ru" ? "Ответы формируются автоматически из актуальных котировок." : "Answers are generated from the live quotes."}
+        />
+        <p className="mb-4 text-[13.5px] leading-relaxed text-muted">{modelSeoParagraph(lang, seoFacts)}</p>
+        <div className="space-y-2">
+          {faqItems.map((item) => (
+            <details key={item.q} className="card px-4 py-3">
+              <summary className="cursor-pointer text-[13.5px] font-medium">{item.q}</summary>
+              <p className="mt-2 text-[13px] leading-relaxed text-muted">{item.a}</p>
+            </details>
+          ))}
+        </div>
+        <JsonLd data={faqJsonLd(faqItems)} />
+        <JsonLd
+          data={breadcrumbJsonLd([
+            { name: "TokenRate", path: `/${lang}` },
+            { name: lang === "ru" ? "Модели" : "Models", path: `/${lang}/models` },
+            { name: model.name, path: `/${lang}/models/${model.slug}` },
+          ])}
+        />
+      </section>
     </div>
   );
 }

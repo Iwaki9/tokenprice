@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { articles } from "@/lib/articles";
 import { getDb } from "@/lib/store";
 import { site } from "@/lib/site";
 
@@ -40,6 +41,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: "daily",
         priority: 0.9,
+      });
+      entries.push({
+        url: `${base}/${lang}/cheapest/${model.slug}`,
+        lastModified: now,
+        changeFrequency: "daily",
+        priority: 0.85,
+      });
+    }
+    for (const article of articles) {
+      entries.push({
+        url: `${base}/${lang}/blog/${article.slug}`,
+        lastModified: new Date(article.publishedAt),
+        changeFrequency: "monthly",
+        priority: 0.6,
       });
     }
     for (const provider of db.providers.filter((p) => p.status === "active")) {

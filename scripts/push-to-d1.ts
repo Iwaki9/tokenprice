@@ -2,7 +2,7 @@
 // Clicks and submissions are NOT touched: they only live in production.
 // Usage: npx tsx scripts/push-to-d1.ts   (requires a wrangler login or CLOUDFLARE_* env vars)
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const ROOT = path.join(__dirname, "..");
@@ -68,6 +68,7 @@ if (existsSync(probeFile)) {
 }
 
 rmSync(TMP, { recursive: true, force: true });
+mkdirSync(TMP, { recursive: true });
 for (let i = 0; i * CHUNK < inserts.length; i += 1) {
   const part = inserts.slice(i * CHUNK, (i + 1) * CHUNK);
   const file = path.join(TMP, `part-${i}.sql`);
@@ -76,9 +77,9 @@ for (let i = 0; i * CHUNK < inserts.length; i += 1) {
 const files: string[] = [];
 for (let i = 0; i * CHUNK < inserts.length; i += 1) files.push(path.join(TMP, `part-${i}.sql`));
 
-const npx = process.platform === "win32" ? "npx.cmd" : "npx";
+const wranglerBin = path.join(ROOT, "node_modules", "wrangler", "bin", "wrangler.js");
 for (const [index, file] of files.entries()) {
-  execFileSync(npx, ["wrangler", "d1", "execute", "tokenprice", "--remote", "--file", file], {
+  execFileSync(process.execPath, [wranglerBin, "d1", "execute", "tokenprice", "--remote", "--file", file], {
     cwd: ROOT,
     stdio: "pipe",
   });
