@@ -1,0 +1,707 @@
+[
+  {
+    "slug": "claude-opus-4-1",
+    "vendor": "anthropic",
+    "name": "Claude Opus 4.1",
+    "official": {
+      "input": 15,
+      "output": 75,
+      "cacheRead": 1.5,
+      "cacheWrite": 18.75,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "releasedAt": "2025-08-05",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 4.1 от Anthropic. Официальная цена $15 за 1M входных и $75 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 4.1 by Anthropic. Official list price: $15 per 1M input and $75 per 1M output tokens."
+  },
+  {
+    "slug": "claude-opus-4",
+    "vendor": "anthropic",
+    "name": "Claude Opus 4",
+    "official": {
+      "input": 15,
+      "output": 75,
+      "cacheRead": 1.5,
+      "cacheWrite": 18.75,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "releasedAt": "2025-05-22",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 4 от Anthropic. Официальная цена $15 за 1M входных и $75 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 4 by Anthropic. Official list price: $15 per 1M input and $75 per 1M output tokens."
+  },
+  {
+    "slug": "claude-sonnet-4-5",
+    "vendor": "anthropic",
+    "name": "Claude Sonnet 4.5",
+    "official": {
+      "input": 3,
+      "output": 15,
+      "cacheRead": 0.3,
+      "cacheWrite": 3.75,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "releasedAt": "2025-09-29",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Sonnet 4.5 от Anthropic. Официальная цена $3 за 1M входных и $15 за 1M выходных токенов.",
+    "summaryEn": "Claude Sonnet 4.5 by Anthropic. Official list price: $3 per 1M input and $15 per 1M output tokens."
+  },
+  {
+    "slug": "claude-sonnet-4",
+    "vendor": "anthropic",
+    "name": "Claude Sonnet 4",
+    "official": {
+      "input": 3,
+      "output": 15,
+      "cacheRead": 0.3,
+      "cacheWrite": 3.75,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "releasedAt": "2025-05-22",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Sonnet 4 от Anthropic. Официальная цена $3 за 1M входных и $15 за 1M выходных токенов.",
+    "summaryEn": "Claude Sonnet 4 by Anthropic. Official list price: $3 per 1M input and $15 per 1M output tokens."
+  },
+  {
+    "slug": "claude-haiku-3-5",
+    "vendor": "anthropic",
+    "name": "Claude Haiku 3.5",
+    "official": {
+      "input": 0.8,
+      "output": 4,
+      "cacheRead": 0.08,
+      "cacheWrite": 1,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "releasedAt": "2024-10-22",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Haiku 3.5 от Anthropic. Официальная цена $0.8 за 1M входных и $4 за 1M выходных токенов.",
+    "summaryEn": "Claude Haiku 3.5 by Anthropic. Official list price: $0.8 per 1M input and $4 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5",
+    "vendor": "openai",
+    "name": "GPT-5",
+    "official": {
+      "input": 1.25,
+      "output": 10,
+      "cacheRead": 0.125,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2025-08-07",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5 от OpenAI. Официальная цена $1.25 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "GPT-5 by OpenAI. Official list price: $1.25 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-mini",
+    "vendor": "openai",
+    "name": "GPT-5 mini",
+    "official": {
+      "input": 0.25,
+      "output": 2,
+      "cacheRead": 0.025,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2025-08-07",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5 mini от OpenAI. Официальная цена $0.25 за 1M входных и $2 за 1M выходных токенов.",
+    "summaryEn": "GPT-5 mini by OpenAI. Official list price: $0.25 per 1M input and $2 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-4o",
+    "vendor": "openai",
+    "name": "GPT-4o",
+    "official": {
+      "input": 2.5,
+      "output": 10,
+      "cacheRead": 1.25,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2024-05-13",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-4o от OpenAI. Официальная цена $2.5 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "GPT-4o by OpenAI. Official list price: $2.5 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-4o-mini",
+    "vendor": "openai",
+    "name": "GPT-4o mini",
+    "official": {
+      "input": 0.15,
+      "output": 0.6,
+      "cacheRead": 0.075,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2024-07-18",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-4o mini от OpenAI. Официальная цена $0.15 за 1M входных и $0.6 за 1M выходных токенов.",
+    "summaryEn": "GPT-4o mini by OpenAI. Official list price: $0.15 per 1M input and $0.6 per 1M output tokens."
+  },
+  {
+    "slug": "o3",
+    "vendor": "openai",
+    "name": "o3",
+    "official": {
+      "input": 2,
+      "output": 8,
+      "cacheRead": 0.5,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2025-04-16",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "o3 от OpenAI. Официальная цена $2 за 1M входных и $8 за 1M выходных токенов.",
+    "summaryEn": "o3 by OpenAI. Official list price: $2 per 1M input and $8 per 1M output tokens."
+  },
+  {
+    "slug": "o4-mini",
+    "vendor": "openai",
+    "name": "o4-mini",
+    "official": {
+      "input": 1.1,
+      "output": 4.4,
+      "cacheRead": 0.275,
+      "cacheWrite": null,
+      "sourceUrl": "https://openai.com/api/pricing/"
+    },
+    "releasedAt": "2025-04-16",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "o4-mini от OpenAI. Официальная цена $1.1 за 1M входных и $4.4 за 1M выходных токенов.",
+    "summaryEn": "o4-mini by OpenAI. Official list price: $1.1 per 1M input and $4.4 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-2-5-pro",
+    "vendor": "google",
+    "name": "Gemini 2.5 Pro",
+    "official": {
+      "input": 1.25,
+      "output": 10,
+      "cacheRead": 0.31,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "releasedAt": "2025-03-25",
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 2.5 Pro от Google. Официальная цена $1.25 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "Gemini 2.5 Pro by Google. Official list price: $1.25 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-2-5-flash",
+    "vendor": "google",
+    "name": "Gemini 2.5 Flash",
+    "official": {
+      "input": 0.3,
+      "output": 2.5,
+      "cacheRead": 0.075,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "releasedAt": "2025-06-17",
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 2.5 Flash от Google. Официальная цена $0.3 за 1M входных и $2.5 за 1M выходных токенов.",
+    "summaryEn": "Gemini 2.5 Flash by Google. Official list price: $0.3 per 1M input and $2.5 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-2-5-flash-lite",
+    "vendor": "google",
+    "name": "Gemini 2.5 Flash Lite",
+    "official": {
+      "input": 0.1,
+      "output": 0.4,
+      "cacheRead": 0.025,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "releasedAt": "2025-07-22",
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 2.5 Flash Lite от Google. Официальная цена $0.1 за 1M входных и $0.4 за 1M выходных токенов.",
+    "summaryEn": "Gemini 2.5 Flash Lite by Google. Official list price: $0.1 per 1M input and $0.4 per 1M output tokens."
+  },
+  {
+    "slug": "grok-4",
+    "vendor": "xai",
+    "name": "Grok 4",
+    "official": {
+      "input": 3,
+      "output": 15,
+      "cacheRead": 0.75,
+      "cacheWrite": null,
+      "sourceUrl": "https://docs.x.ai/docs/models"
+    },
+    "releasedAt": "2025-07-09",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Grok 4 от xAI. Официальная цена $3 за 1M входных и $15 за 1M выходных токенов.",
+    "summaryEn": "Grok 4 by xAI. Official list price: $3 per 1M input and $15 per 1M output tokens."
+  },
+  {
+    "slug": "grok-3",
+    "vendor": "xai",
+    "name": "Grok 3",
+    "official": {
+      "input": 3,
+      "output": 15,
+      "cacheRead": 0.75,
+      "cacheWrite": null,
+      "sourceUrl": "https://docs.x.ai/docs/models"
+    },
+    "releasedAt": "2025-02-17",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Grok 3 от xAI. Официальная цена $3 за 1M входных и $15 за 1M выходных токенов.",
+    "summaryEn": "Grok 3 by xAI. Official list price: $3 per 1M input and $15 per 1M output tokens."
+  },
+  {
+    "slug": "grok-3-mini",
+    "vendor": "xai",
+    "name": "Grok 3 mini",
+    "official": {
+      "input": 0.3,
+      "output": 0.5,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://docs.x.ai/docs/models"
+    },
+    "releasedAt": "2025-02-17",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Grok 3 mini от xAI. Официальная цена $0.3 за 1M входных и $0.5 за 1M выходных токенов.",
+    "summaryEn": "Grok 3 mini by xAI. Official list price: $0.3 per 1M input and $0.5 per 1M output tokens."
+  },
+  {
+    "slug": "deepseek-v3-1",
+    "vendor": "deepseek",
+    "name": "DeepSeek V3.1",
+    "official": {
+      "input": 0.27,
+      "output": 1.1,
+      "cacheRead": 0.07,
+      "cacheWrite": null,
+      "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "releasedAt": "2025-08-21",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "DeepSeek V3.1 от DeepSeek. Официальная цена $0.27 за 1M входных и $1.1 за 1M выходных токенов.",
+    "summaryEn": "DeepSeek V3.1 by DeepSeek. Official list price: $0.27 per 1M input and $1.1 per 1M output tokens."
+  },
+  {
+    "slug": "deepseek-r1",
+    "vendor": "deepseek",
+    "name": "DeepSeek R1",
+    "official": {
+      "input": 0.55,
+      "output": 2.19,
+      "cacheRead": 0.14,
+      "cacheWrite": null,
+      "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "releasedAt": "2025-01-20",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "DeepSeek R1 от DeepSeek. Официальная цена $0.55 за 1M входных и $2.19 за 1M выходных токенов.",
+    "summaryEn": "DeepSeek R1 by DeepSeek. Official list price: $0.55 per 1M input and $2.19 per 1M output tokens."
+  },
+  {
+    "slug": "kimi-k2",
+    "vendor": "moonshot",
+    "name": "Kimi K2",
+    "official": {
+      "input": 0.6,
+      "output": 2.5,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://platform.moonshot.ai/docs/pricing"
+    },
+    "releasedAt": "2025-07-11",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Kimi K2 от Moonshot. Официальная цена $0.6 за 1M входных и $2.5 за 1M выходных токенов.",
+    "summaryEn": "Kimi K2 by Moonshot. Official list price: $0.6 per 1M input and $2.5 per 1M output tokens."
+  },
+  {
+    "slug": "kimi-k2-thinking",
+    "vendor": "moonshot",
+    "name": "Kimi K2 Thinking",
+    "official": {
+      "input": 0.6,
+      "output": 2.5,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://platform.moonshot.ai/docs/pricing"
+    },
+    "releasedAt": "2025-11-06",
+    "contextWindow": 200000,
+    "status": "preview",
+    "featured": true,
+    "summaryRu": "Kimi K2 Thinking от Moonshot. Официальная цена $0.6 за 1M входных и $2.5 за 1M выходных токенов.",
+    "summaryEn": "Kimi K2 Thinking by Moonshot. Official list price: $0.6 per 1M input and $2.5 per 1M output tokens."
+  },
+  {
+    "slug": "glm-4-6",
+    "vendor": "zhipu",
+    "name": "GLM-4.6",
+    "official": {
+      "input": 0.6,
+      "output": 2.2,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://open.bigmodel.cn/pricing"
+    },
+    "releasedAt": "2025-09-30",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GLM-4.6 от Zhipu AI. Официальная цена $0.6 за 1M входных и $2.2 за 1M выходных токенов.",
+    "summaryEn": "GLM-4.6 by Zhipu AI. Official list price: $0.6 per 1M input and $2.2 per 1M output tokens."
+  },
+  {
+    "slug": "glm-4-5-air",
+    "vendor": "zhipu",
+    "name": "GLM-4.5 Air",
+    "official": {
+      "input": 0.2,
+      "output": 1.1,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://open.bigmodel.cn/pricing"
+    },
+    "releasedAt": "2025-07-28",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GLM-4.5 Air от Zhipu AI. Официальная цена $0.2 за 1M входных и $1.1 за 1M выходных токенов.",
+    "summaryEn": "GLM-4.5 Air by Zhipu AI. Official list price: $0.2 per 1M input and $1.1 per 1M output tokens."
+  },
+  {
+    "slug": "qwen3-max",
+    "vendor": "qwen",
+    "name": "Qwen3 Max",
+    "official": {
+      "input": 1.2,
+      "output": 6,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://www.alibabacloud.com/help/en/model-studio/models"
+    },
+    "releasedAt": "2025-09-24",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Qwen3 Max от Qwen. Официальная цена $1.2 за 1M входных и $6 за 1M выходных токенов.",
+    "summaryEn": "Qwen3 Max by Qwen. Official list price: $1.2 per 1M input and $6 per 1M output tokens."
+  },
+  {
+    "slug": "qwen-plus",
+    "vendor": "qwen",
+    "name": "Qwen Plus",
+    "official": {
+      "input": 0.4,
+      "output": 1.2,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://www.alibabacloud.com/help/en/model-studio/models"
+    },
+    "releasedAt": "2025-04-29",
+    "contextWindow": 200000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Qwen Plus от Qwen. Официальная цена $0.4 за 1M входных и $1.2 за 1M выходных токенов.",
+    "summaryEn": "Qwen Plus by Qwen. Official list price: $0.4 per 1M input and $1.2 per 1M output tokens."
+  },
+  {
+    "slug": "claude-fable-5-2",
+    "vendor": "anthropic",
+    "name": "Claude Fable 5.2",
+    "official": {
+      "input": 8,
+      "output": 40,
+      "cacheRead": 0.2,
+      "cacheWrite": 10,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Fable 5.2 от Anthropic. Официальная цена $8 за 1M входных и $40 за 1M выходных токенов.",
+    "summaryEn": "Claude Fable 5.2 by Anthropic. Official list price: $8 per 1M input and $40 per 1M output tokens."
+  },
+  {
+    "slug": "claude-opus-5-5",
+    "vendor": "anthropic",
+    "name": "Claude Opus 5.5",
+    "official": {
+      "input": 4,
+      "output": 20,
+      "cacheRead": 0.2,
+      "cacheWrite": 5,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 5.5 от Anthropic. Официальная цена $4 за 1M входных и $20 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 5.5 by Anthropic. Official list price: $4 per 1M input and $20 per 1M output tokens."
+  },
+  {
+    "slug": "claude-sonnet-5-5",
+    "vendor": "anthropic",
+    "name": "Claude Sonnet 5.5",
+    "official": {
+      "input": 2,
+      "output": 10,
+      "cacheRead": 0.1,
+      "cacheWrite": 2.5,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Sonnet 5.5 от Anthropic. Официальная цена $2 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "Claude Sonnet 5.5 by Anthropic. Official list price: $2 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "claude-haiku-5-5",
+    "vendor": "anthropic",
+    "name": "Claude Haiku 5.5",
+    "official": {
+      "input": 0.1,
+      "output": 0.5,
+      "cacheRead": 0.01,
+      "cacheWrite": 0.125,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Haiku 5.5 от Anthropic. Официальная цена $0.1 за 1M входных и $0.5 за 1M выходных токенов.",
+    "summaryEn": "Claude Haiku 5.5 by Anthropic. Official list price: $0.1 per 1M input and $0.5 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-5",
+    "vendor": "openai",
+    "name": "GPT-5.5",
+    "official": {
+      "input": 5,
+      "output": 30,
+      "cacheRead": 0.5,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.5 от OpenAI. Официальная цена $5 за 1M входных и $30 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.5 by OpenAI. Official list price: $5 per 1M input and $30 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-6-terra",
+    "vendor": "openai",
+    "name": "GPT-5.6 Terra",
+    "official": {
+      "input": 2,
+      "output": 12,
+      "cacheRead": 0.2,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.6 Terra от OpenAI. Официальная цена $2 за 1M входных и $12 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.6 Terra by OpenAI. Official list price: $2 per 1M input and $12 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-6-luna",
+    "vendor": "openai",
+    "name": "GPT-5.6 Luna",
+    "official": {
+      "input": 0.2,
+      "output": 1.2,
+      "cacheRead": 0.02,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.6 Luna от OpenAI. Официальная цена $0.2 за 1M входных и $1.2 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.6 Luna by OpenAI. Official list price: $0.2 per 1M input and $1.2 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-4-1",
+    "vendor": "openai",
+    "name": "GPT-4.1",
+    "official": {
+      "input": 2,
+      "output": 8,
+      "cacheRead": 0.5,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-4.1 от OpenAI. Официальная цена $2 за 1M входных и $8 за 1M выходных токенов.",
+    "summaryEn": "GPT-4.1 by OpenAI. Official list price: $2 per 1M input and $8 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-4-1-mini",
+    "vendor": "openai",
+    "name": "GPT-4.1 mini",
+    "official": {
+      "input": 0.4,
+      "output": 1.6,
+      "cacheRead": 0.1,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-4.1 mini от OpenAI. Официальная цена $0.4 за 1M входных и $1.6 за 1M выходных токенов.",
+    "summaryEn": "GPT-4.1 mini by OpenAI. Official list price: $0.4 per 1M input and $1.6 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-3-8-flash",
+    "vendor": "google",
+    "name": "Gemini 3.8 Flash",
+    "official": {
+      "input": 0.75,
+      "output": 3.75,
+      "cacheRead": 0.075,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 3.8 Flash от Google. Официальная цена $0.75 за 1M входных и $3.75 за 1M выходных токенов.",
+    "summaryEn": "Gemini 3.8 Flash by Google. Official list price: $0.75 per 1M input and $3.75 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-4-argon",
+    "vendor": "google",
+    "name": "Gemini 4 Argon",
+    "official": {
+      "input": 2,
+      "output": 10,
+      "cacheRead": 0.1,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "contextWindow": 1048576,
+    "status": "preview",
+    "featured": true,
+    "summaryRu": "Gemini 4 Argon от Google. Официальная цена $2 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "Gemini 4 Argon by Google. Official list price: $2 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-6-astra",
+    "vendor": "openai",
+    "name": "GPT-6 Astra",
+    "official": {
+      "input": 10,
+      "output": 50,
+      "cacheRead": 1,
+      "cacheWrite": 12.5,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-6 Astra от OpenAI. Официальная цена $10 за 1M входных и $50 за 1M выходных токенов.",
+    "summaryEn": "GPT-6 Astra by OpenAI. Official list price: $10 per 1M input and $50 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-6-1-sol",
+    "vendor": "openai",
+    "name": "GPT-6.1 Sol",
+    "official": {
+      "input": 2,
+      "output": 10,
+      "cacheRead": 0.1,
+      "cacheWrite": 2.5,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-6.1 Sol от OpenAI. Официальная цена $2 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "GPT-6.1 Sol by OpenAI. Official list price: $2 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-6-1-terra",
+    "vendor": "openai",
+    "name": "GPT-6.1 Terra",
+    "official": {
+      "input": 1,
+      "output": 5,
+      "cacheRead": 0.05,
+      "cacheWrite": 1.25,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-6.1 Terra от OpenAI. Официальная цена $1 за 1M входных и $5 за 1M выходных токенов.",
+    "summaryEn": "GPT-6.1 Terra by OpenAI. Official list price: $1 per 1M input and $5 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-6-luna",
+    "vendor": "openai",
+    "name": "GPT-6 Luna",
+    "official": {
+      "input": 0.1,
+      "output": 0.5,
+      "cacheRead": 0.01,
+      "cacheWrite": 0.125,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-6 Luna от OpenAI. Официальная цена $0.1 за 1M входных и $0.5 за 1M выходных токенов.",
+    "summaryEn": "GPT-6 Luna by OpenAI. Official list price: $0.1 per 1M input and $0.5 per 1M output tokens."
+  }
+]

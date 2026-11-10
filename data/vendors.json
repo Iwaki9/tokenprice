@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "anthropic",
+    "name": "Anthropic",
+    "brandColor": "#d97757",
+    "mark": "A"
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI",
+    "brandColor": "#0f9d76",
+    "mark": "O"
+  },
+  {
+    "slug": "google",
+    "name": "Google",
+    "brandColor": "#4285f4",
+    "mark": "G"
+  },
+  {
+    "slug": "xai",
+    "name": "xAI",
+    "brandColor": "#111111",
+    "mark": "X"
+  },
+  {
+    "slug": "deepseek",
+    "name": "DeepSeek",
+    "brandColor": "#4d6bfe",
+    "mark": "D"
+  },
+  {
+    "slug": "moonshot",
+    "name": "Moonshot",
+    "brandColor": "#7c3aed",
+    "mark": "K"
+  },
+  {
+    "slug": "zhipu",
+    "name": "Zhipu AI",
+    "brandColor": "#1e5eff",
+    "mark": "Z"
+  },
+  {
+    "slug": "qwen",
+    "name": "Qwen",
+    "brandColor": "#615ced",
+    "mark": "Q"
+  }
+]

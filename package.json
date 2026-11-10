@@ -1,0 +1,31 @@
+{
+  "name": "ai-price-rank",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "crawl": "tsx crawler/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

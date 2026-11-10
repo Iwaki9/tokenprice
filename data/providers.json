@@ -1,0 +1,395 @@
+[
+  {
+    "slug": "tokemart",
+    "name": "Tokemart",
+    "taglineRu": "Агрессивно дешёвый пул с оплатой картой и криптой, без инвойсов.",
+    "taglineEn": "Aggressively cheap pool, card and crypto payments, no invoices.",
+    "homepage": "https://tokemart.example.com",
+    "referralUrl": "https://tokemart.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://tokemart.example.com/pricing",
+    "apiBase": "https://api.tokemart.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "crypto": true,
+      "usageBased": true,
+      "trialCredit": true,
+      "refunds": false
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google"
+    ],
+    "minTopUp": {
+      "amount": 2,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "swiftroute",
+    "name": "SwiftRoute",
+    "taglineRu": "Широкое покрытие моделей, стабильная маршрутизация, низкий минимум.",
+    "taglineEn": "Broad model coverage, stable routing, low minimum top-up.",
+    "homepage": "https://swiftroute.example.com",
+    "referralUrl": "https://swiftroute.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://swiftroute.example.com/pricing",
+    "apiBase": "https://api.swiftroute.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "usageBased": true,
+      "trialCredit": true,
+      "invoice": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": {
+      "amount": 5,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "claudepool",
+    "name": "ClaudePool",
+    "taglineRu": "Только Anthropic, разбивка по группам и высокий лимит на конкурентность.",
+    "taglineEn": "Anthropic only, group multipliers and high concurrency limits.",
+    "homepage": "https://claudepool.example.com",
+    "referralUrl": "https://claudepool.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://claudepool.example.com/pricing",
+    "apiBase": "https://api.claudepool.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "alipay": true,
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic"
+    ],
+    "minTopUp": {
+      "amount": 10,
+      "currency": "CNY"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "promptport",
+    "name": "PromptPort",
+    "taglineRu": "Европейская команда, инвойсы, оплата картой, поддержка по email.",
+    "taglineEn": "EU-based team, invoices, card payments, email support.",
+    "homepage": "https://promptport.example.com",
+    "referralUrl": "https://promptport.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://promptport.example.com/pricing",
+    "apiBase": "https://api.promptport.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "invoice": true,
+      "refunds": true,
+      "usageBased": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": {
+      "amount": 10,
+      "currency": "EUR"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "modelmill",
+    "name": "ModelMill",
+    "taglineRu": "Все модели в одном биллинге, есть пробный кредит на $1.",
+    "taglineEn": "Every model behind one billing account, $1 trial credit.",
+    "homepage": "https://modelmill.example.com",
+    "referralUrl": "https://modelmill.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://modelmill.example.com/pricing",
+    "apiBase": "https://api.modelmill.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "invoice": true,
+      "trialCredit": true,
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "deepseek",
+      "zhipu",
+      "qwen"
+    ],
+    "minTopUp": {
+      "amount": 1,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "novarelay",
+    "name": "NovaRelay",
+    "taglineRu": "Прозрачный прайс без групп, оплата по факту, возвраты в течение 24 часов.",
+    "taglineEn": "Flat pricing with no groups, pay as you go, 24-hour refunds.",
+    "homepage": "https://novarelay.example.com",
+    "referralUrl": "https://novarelay.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://novarelay.example.com/pricing",
+    "apiBase": "https://api.novarelay.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "usageBased": true,
+      "refunds": true
+    },
+    "tags": [
+      "anthropic",
+      "google",
+      "deepseek"
+    ],
+    "minTopUp": {
+      "amount": 5,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "apibridge",
+    "name": "APIBridge",
+    "taglineRu": "Ориентирован на азиатские модели, Alipay и WeChat Pay, инвойсы.",
+    "taglineEn": "Focused on Asian models, Alipay and WeChat Pay, invoices available.",
+    "homepage": "https://apibridge.example.com",
+    "referralUrl": "https://apibridge.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://apibridge.example.com/pricing",
+    "apiBase": "https://api.apibridge.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "alipay": true,
+      "wechat": true,
+      "invoice": true,
+      "usageBased": true
+    },
+    "tags": [
+      "openai",
+      "xai",
+      "deepseek",
+      "moonshot",
+      "zhipu",
+      "qwen"
+    ],
+    "minTopUp": {
+      "amount": 20,
+      "currency": "CNY"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "fluxapi",
+    "name": "FluxAPI",
+    "taglineRu": "Средний ценник, но стабильная скорость и понятная документация.",
+    "taglineEn": "Mid-range pricing with steady latency and clear docs.",
+    "homepage": "https://fluxapi.example.com",
+    "referralUrl": "https://fluxapi.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://fluxapi.example.com/pricing",
+    "apiBase": "https://api.fluxapi.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "card": true,
+      "invoice": true,
+      "usageBased": true,
+      "trialCredit": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai"
+    ],
+    "minTopUp": {
+      "amount": 10,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "relayone",
+    "name": "RelayOne",
+    "taglineRu": "Близко к официальной цене, корпоративные инвойсы и SLA.",
+    "taglineEn": "Close to list price, corporate invoicing and an SLA.",
+    "homepage": "https://relayone.example.com",
+    "referralUrl": "https://relayone.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://relayone.example.com/pricing",
+    "apiBase": "https://api.relayone.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "invoice": true,
+      "card": true,
+      "refunds": true,
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai"
+    ],
+    "minTopUp": {
+      "amount": 50,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "bytegate",
+    "name": "ByteGate",
+    "taglineRu": "Перепродажа с наценкой к официальному прайсу, но с поддержкой 24/7.",
+    "taglineEn": "Resale above list price, with 24/7 support.",
+    "homepage": "https://bytegate.example.com",
+    "referralUrl": "https://bytegate.example.com/register?aff=tokenrate",
+    "referralParam": "sub_id",
+    "pricingUrl": "https://bytegate.example.com/pricing",
+    "apiBase": "https://api.bytegate.example.com/v1",
+    "crawlAdapter": "html-table",
+    "features": {
+      "invoice": true,
+      "card": true,
+      "usageBased": true,
+      "trialCredit": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai"
+    ],
+    "minTopUp": {
+      "amount": 25,
+      "currency": "USD"
+    },
+    "status": "active",
+    "isDemo": true,
+    "createdAt": "2026-08-12T03:26:03.025Z",
+    "updatedAt": "2026-11-10T03:26:03.025Z"
+  },
+  {
+    "slug": "deepinfra",
+    "name": "DeepInfra",
+    "taglineRu": "Открытые модели по низкой цене, оплата по факту, публичный прайс-API.",
+    "taglineEn": "Cheap open models, pay-as-you-go, public pricing API.",
+    "homepage": "https://deepinfra.com",
+    "pricingUrl": "https://api.deepinfra.com/v1/openai/models",
+    "apiBase": "https://api.deepinfra.com/v1/openai",
+    "crawlAdapter": "deepinfra",
+    "features": {
+      "card": true,
+      "usageBased": true
+    },
+    "tags": [
+      "deepseek",
+      "google",
+      "qwen",
+      "zhipu"
+    ],
+    "minTopUp": null,
+    "status": "active",
+    "isDemo": false,
+    "createdAt": "2026-11-10T03:26:17.563Z",
+    "updatedAt": "2026-11-10T03:26:17.563Z"
+  },
+  {
+    "slug": "novita",
+    "name": "Novita AI",
+    "taglineRu": "Хостинг открытых моделей с прозрачным прайсом в JSON и кэшем промпта.",
+    "taglineEn": "Open-model hosting with a JSON price list and prompt caching.",
+    "homepage": "https://novita.ai",
+    "pricingUrl": "https://api.novita.ai/v3/openai/models",
+    "apiBase": "https://api.novita.ai/v3/openai",
+    "crawlAdapter": "novita",
+    "features": {
+      "card": true,
+      "usageBased": true,
+      "trialCredit": true
+    },
+    "tags": [
+      "moonshot",
+      "deepseek",
+      "zhipu"
+    ],
+    "minTopUp": null,
+    "status": "active",
+    "isDemo": false,
+    "createdAt": "2026-11-10T03:26:17.563Z",
+    "updatedAt": "2026-11-10T03:26:17.563Z"
+  },
+  {
+    "slug": "polza",
+    "name": "Polza.ai",
+    "taglineRu": "Агрегатор 400+ моделей Claude, GPT и Gemini с оплатой в рублях и публичным прайс-API.",
+    "taglineEn": "Aggregator of 400+ Claude, GPT and Gemini models, RUB billing, public pricing API.",
+    "homepage": "https://polza.ai",
+    "pricingUrl": "https://api.polza.ai/api/v1/models",
+    "apiBase": "https://api.polza.ai/api/v1",
+    "crawlAdapter": "polza",
+    "features": {
+      "card": true,
+      "usageBased": true,
+      "trialCredit": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai"
+    ],
+    "minTopUp": null,
+    "status": "active",
+    "isDemo": false,
+    "createdAt": "2026-11-10T03:26:17.563Z",
+    "updatedAt": "2026-11-10T03:26:17.563Z"
+  }
+]
