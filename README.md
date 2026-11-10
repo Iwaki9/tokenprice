@@ -1,198 +1,112 @@
-# TokenRate — индекс цен на LLM API
+# LLM API price comparison (open data)
 
-Агрегатор опубликованных цен на API языковых моделей + мониторинг доступности
-провайдеров-перекупщиков. RU/EN, реферальная монетизация, админка с CRUD,
-бесплатный чекер API.
+Curated, machine-readable comparison of LLM API list prices from official vendor
+pages plus third-party provider quotes from our crawler. **40 models**,
+updated automatically.
 
-Собран на Next.js 16 (App Router, Turbopack) + React 19 + TypeScript + Tailwind 4.
-Данные лежат в JSON-файлах в `data/` — без базы, чтобы проект можно было
-поднять одной командой и версионировать цены в git.
+👉 Interactive version with hourly price checks, uptime monitoring and a cost
+calculator: **[tokenprice.rest](https://tokenprice.rest)**
+_(this site uses sponsored referral links; ranking is independent of them — see
+[methodology](https://tokenprice.rest/en/methodology))._
 
-## Быстрый старт
+## Official list prices (USD per 1M tokens)
 
-```bash
-npm install
-npm run seed          # демо-датасет (25 моделей, 10 провайдеров, 146 котировок)
-npm run dev           # http://localhost:3000 → редирект на /ru
-```
+Prices are the vendors' standard API tiers (not batch/flex), checked on
+2026-11-10. Sources are linked per model in
+[`data/official-prices.json`](data/official-prices.json).
 
-Админка: `/ru/admin`, пароль по умолчанию `admin`
-(см. `ADMIN_PASSWORD` в `.env.example` — до деплоя обязательно задать свой).
+| Model | Vendor | Input | Output | Cached input | Context | Cheapest crawler-verified quote |
+|---|---|---:|---:|---:|---:|---|
+| **Claude Opus 4.1** | anthropic | $15 | $75 | $1.50 | 200K | [Polza.ai](https://polza.ai) $22 / $110 |
+| **Claude Opus 4** | anthropic | $15 | $75 | $1.50 | 200K | — |
+| **Claude Sonnet 4.5** | anthropic | $3.00 | $15 | $0.300 | 200K | [Polza.ai](https://polza.ai) $4.38 / $22 |
+| **Claude Sonnet 4** | anthropic | $3.00 | $15 | $0.300 | 200K | — |
+| **Claude Haiku 3.5** | anthropic | $0.800 | $4.00 | $0.080 | 200K | — |
+| **GPT-5** | openai | $1.25 | $10 | $0.125 | 200K | [Polza.ai](https://polza.ai) $1.83 / $15 |
+| **GPT-5 mini** | openai | $0.250 | $2.00 | $0.025 | 200K | [Polza.ai](https://polza.ai) $0.183 / $1.46 (**−27%**) |
+| **GPT-4o** | openai | $2.50 | $10 | $1.25 | 200K | [Polza.ai](https://polza.ai) $3.65 / $15 |
+| **GPT-4o mini** | openai | $0.150 | $0.600 | $0.075 | 200K | [Polza.ai](https://polza.ai) $0.219 / $0.876 |
+| **o3** | openai | $2.00 | $8.00 | $0.500 | 200K | [Polza.ai](https://polza.ai) $2.92 / $12 |
+| **o4-mini** | openai | $1.10 | $4.40 | $0.275 | 200K | — |
+| **Gemini 2.5 Pro** | google | $1.25 | $10 | $0.310 | 1049K | [Polza.ai](https://polza.ai) $0.913 / $7.30 (**−27%**) |
+| **Gemini 2.5 Flash** | google | $0.300 | $2.50 | $0.075 | 1049K | [Polza.ai](https://polza.ai) $0.219 / $1.83 (**−27%**) |
+| **Gemini 2.5 Flash Lite** | google | $0.100 | $0.400 | $0.025 | 1049K | [Polza.ai](https://polza.ai) $0.073 / $0.292 (**−27%**) |
+| **Grok 4** | xai | $3.00 | $15 | $0.750 | 200K | — |
+| **Grok 3** | xai | $3.00 | $15 | $0.750 | 200K | — |
+| **Grok 3 mini** | xai | $0.300 | $0.500 | — | 200K | — |
+| **DeepSeek V3.1** | deepseek | $0.270 | $1.10 | $0.070 | 200K | [DeepInfra](https://deepinfra.com) $0.250 / $0.950 (**−10%**) |
+| **DeepSeek R1** | deepseek | $0.550 | $2.19 | $0.140 | 200K | [DeepInfra](https://deepinfra.com) $0.500 / $2.15 (**−6%**) |
+| **Kimi K2** | moonshot | $0.600 | $2.50 | — | 200K | [Novita AI](https://novita.ai) $0.570 / $2.30 (**−6%**) |
+| **Kimi K2 Thinking** | moonshot | $0.600 | $2.50 | — | 200K | [Novita AI](https://novita.ai) $0.600 / $2.50 |
+| **GLM-4.6** | zhipu | $0.600 | $2.20 | — | 200K | [DeepInfra](https://deepinfra.com) $0.500 / $2.00 (**−13%**) |
+| **GLM-4.5 Air** | zhipu | $0.200 | $1.10 | — | 200K | [Novita AI](https://novita.ai) $0.130 / $0.850 (**−29%**) |
+| **Qwen3 Max** | qwen | $1.20 | $6.00 | — | 200K | — |
+| **Qwen Plus** | qwen | $0.400 | $1.20 | — | 200K | [Polza.ai](https://polza.ai) $0.372 / $1.12 (**−7%**) |
+| **Claude Fable 5.2** | anthropic | $8.00 | $40 | $0.200 | 400K | [Polza.ai](https://polza.ai) $11 / $57 |
+| **Claude Opus 5.5** | anthropic | $4.00 | $20 | $0.200 | 400K | [DeepInfra](https://deepinfra.com) $4.00 / $20 |
+| **Claude Sonnet 5.5** | anthropic | $2.00 | $10 | $0.100 | 400K | [DeepInfra](https://deepinfra.com) $2.00 / $10 |
+| **Claude Haiku 5.5**<br>_⚠ Цена для промптов до 100K токенов; свыше 100K — $0.50 / $2.50._ | anthropic | $0.100 | $0.500 | $0.010 | 400K | [Polza.ai](https://polza.ai) $0.146 / $0.730 |
+| **GPT-5.5**<br>_⚠ Контекст до 272K; свыше — $10 / $45._ | openai | $5.00 | $30 | $0.500 | 400K | [Polza.ai](https://polza.ai) $3.65 / $22 (**−27%**) |
+| **GPT-5.6 Terra**<br>_⚠ Контекст до 272K; свыше — $4 / $18._ | openai | $2.00 | $12 | $0.200 | 400K | [Polza.ai](https://polza.ai) $1.46 / $8.76 (**−27%**) |
+| **GPT-5.6 Luna**<br>_⚠ Контекст до 272K; свыше — $0.40 / $1.80._ | openai | $0.200 | $1.20 | $0.020 | 400K | [Polza.ai](https://polza.ai) $0.146 / $0.876 (**−27%**) |
+| **GPT-4.1** | openai | $2.00 | $8.00 | $0.500 | 400K | [Polza.ai](https://polza.ai) $2.92 / $12 |
+| **GPT-4.1 mini** | openai | $0.400 | $1.60 | $0.100 | 400K | [Polza.ai](https://polza.ai) $0.584 / $2.34 |
+| **Gemini 3.8 Flash**<br>_⚠ Цена до 31.12.2026; с 01.01.2027 — $1.50 / $7.50._ | google | $0.750 | $3.75 | $0.075 | 1049K | [Polza.ai](https://polza.ai) $0.540 / $2.70 (**−28%**) |
+| **Gemini 4 Argon**<br>_⚠ Цена до 30.11.2026; с 01.12.2026 — $4 / $20._ | google | $2.00 | $10 | $0.100 | 1049K | [Polza.ai](https://polza.ai) $1.44 / $7.20 (**−28%**) |
+| **GPT-6 Astra**<br>_⚠ Контекст до 272K; свыше — $20 / $75._ | openai | $10 | $50 | $1.00 | 400K | [Polza.ai](https://polza.ai) $7.30 / $37 (**−27%**) |
+| **GPT-6.1 Sol**<br>_⚠ Контекст до 272K; свыше — $4 / $15._ | openai | $2.00 | $10 | $0.100 | 400K | [Polza.ai](https://polza.ai) $1.46 / $7.30 (**−27%**) |
+| **GPT-6.1 Terra**<br>_⚠ Контекст до 272K; свыше — $2 / $7.50._ | openai | $1.00 | $5.00 | $0.050 | 400K | [Polza.ai](https://polza.ai) $0.715 / $3.58 (**−28%**) |
+| **GPT-6 Luna**<br>_⚠ Контекст до 272K; свыше — $0.20 / $0.75._ | openai | $0.100 | $0.500 | $0.010 | 400K | [Polza.ai](https://polza.ai) $0.073 / $0.365 (**−27%**) |
 
-```bash
-npm run build         # прод-сборка
-npm start             # прод-сервер
-npm run typecheck     # tsc --noEmit
-```
+Provider quotes above are fetched by the crawler in this repo
+([`crawler/index.ts`](crawler/index.ts)) from the providers' public pricing
+APIs on 2026-11-10. **They change often — treat the table as a snapshot and
+check [the live feed](https://tokenprice.rest/api/prices.json).**
 
-## Структура
+## Machine-readable data
 
-```
-data/                 данные (источник правды)
-  vendors.json        вендоры: Anthropic, OpenAI, Google, xAI…
-  models.json         модели + официальные цены (USD за 1M токенов) + ссылка на прайс
-  providers.json      провайдеры: реферальная ссылка, теги, фичи, apiBase/pricingUrl
-  prices.json         котировки провайдеров: input/output/cache + источник + дата
-  submissions.json    заявки на добавление
-  clicks.jsonl        лог переходов по реферальным ссылкам (не в git)
-  probes.jsonl        история health-проверок (не в git)
-src/lib/              типы, хранилище, расчёт рейтинга, мониторинг, i18n, auth
-src/app/[lang]/       страницы RU/EN
-  page.tsx            главная: доски моделей + фильтры
-  models/             каталог и страница модели (сортировки, бюджет, калькулятор)
-  providers/          каталог и страница провайдера (цены, мониторинг, альтернативы)
-  compare/            сравнение моделей по токенам на бюджет
-  check/              чекер API-ключа
-  submit/             заявка провайдера
-  admin/              админка (обзор, провайдеры, заявки, переходы)
-src/app/visit/[slug]  редирект по реферальной ссылке + логирование клика
-src/app/api/check     серверный чекер (SSRF-защита, rate-limit)
-crawler/              краулер цен и health-проб
-scripts/seed.ts       генератор демо-данных
-```
+All data files are in [`data/`](data/) and regenerate daily via CI:
 
-## Как считается рейтинг
-
-Каждая доска — одна модель. Смесь вход:выход задаётся пресетом (по умолчанию 1:1):
-
-```
-blended = (ratio * input + output) / (ratio + 1)      // $ за 1M смешанных токенов
-tokens  = budget / blended * 1_000_000
-saving  = 1 - blended_provider / blended_official
-```
-
-Сортировка по токенам на бюджет. Планы, бонусы, кэш и комиссии в расчёт не входят.
-Формула полностью описана на странице `/[lang]/methodology`.
-
-Индекс качества провайдера (`composite`, 0–100) = 40% аптайм + 30% стабильность 30д
-+ 30% скорость (p95). Считается по `data/probes.jsonl`.
-
-## Добавление провайдера
-
-Два пути:
-
-1. **Админка** — `/ru/admin/providers/new`. Заполните название, сайт,
-   реферальную ссылку, параметр реферала (`sub_id`, `aff_id`, `ref`), теги и цены.
-   Slug генерируется из названия.
-2. **Заявка извне** — форма `/[lang]/submit` → очередь `/ru/admin/submissions`.
-   Кнопка «Одобрить + Новый провайдер» создаёт черновик со статусом `pending`
-   и уже подставленной реферальной ссылкой.
-
-Статусы: `active` (в индексе и на сайте), `hidden`, `pending` (черновик).
-
-## Реферальные ссылки и монетизация
-
-- Кнопки «Перейти на сайт» ведут на `/visit/<slug>`, а не напрямую.
-- Редирект подставляет `referralParam=tr-<from>` и `utm_*`, затем 302 на
-  `referralUrl`. Если ссылки нет — на `homepage`.
-- Каждый клик пишется в `data/clicks.jsonl` (slug, время, источник, страна, UA).
-- Отчёт: `/ru/admin/clicks`, выгрузка CSV: `/api/admin/clicks`.
-- Все исходящие кнопки помечены `rel="sponsored nofollow noopener"`;
-  на страницах провайдера и в футере есть раскрытие партнёрских ссылок.
-- Сортировка рейтинга **не зависит** от наличия реферальной ссылки.
-
-## Краулер
-
-```bash
-npm run crawl -- prices                 # прочитать pricingUrl всех провайдеров
-npm run crawl -- prices --dry           # показать, что изменится, без записи
-npm run crawl -- health                 # проверить apiBase, записать пробы
-npm run crawl -- both --include-demo    # включить демо-провайдеров
-```
-
-Провайдеру в `data/providers.json` нужно указать:
-
-```json
-{
-  "pricingUrl": "https://provider.example/pricing",
-  "crawlAdapter": "html-table",   // или "json" для структурированных прайсов
-  "apiBase": "https://api.provider.example/v1"
-}
-```
-
-- `html-table` — разбирает `<tr>/<td>`, ищет название модели, берёт первые два
-  числа как input/output, конвертирует юани по `FX_CNY_USD`.
-- `json` — понимает OpenRouter-подобный `{ data: [{ id, pricing: { prompt, completion } }] }`
-  и плоский `{ "model-slug": { input, output } }`.
-
-Health-проба делает `GET <apiBase>/models`; ключ берётся из
-`TR_KEY_<SLUG>` (uppercase, дефисы → подчёркивания). Любой ответ < 500
-считается доступностью эндпоинта — это проверка связи, не гарантия работы модели.
-
-### Источники цен, которые читает краулер
-
-Публичные JSON-прайсы читаются напрямую, HTML-страницы — только если в них есть таблица.
-
-| Провайдер | Источник | Адаптер | Единица | Валюта |
-|---|---|---|---|---|
-| DeepInfra | `api.deepinfra.com/v1/openai/models` | `deepinfra` | за 1M | USD |
-| Novita AI | `api.novita.ai/v3/openai/models` | `novita` | за 1M (decimal-поля) | USD |
-| Polza.ai | `api.polza.ai/api/v1/models` | `polza` | за 1M | RUB (`FX_RUB_USD`) |
-| Together AI | `together.ai/pricing` (HTML) | `together` | за 1M | USD, таблицы fine-tuning отбрасываются |
-
-Adapter `auto` определяет формат сам: JSON → `json`, JSON-LD → `json-ld`, таблица → `html-table`.
-Для нестандартных схем в `crawlConfig` можно задать `listPath`, `inputPath`, `outputPath`, `unit`, `currency`, `modelAliases`.
-
-Проверить конкретный источник без записи:
-
-```bash
-npm run crawl -- inspect polza          # по slug провайдера
-npm run crawl -- inspect https://...    # по URL
-npm run crawl -- prices --dry --verbose
-```
-
-Про RSS: прайсы в RSS у провайдеров не нашлись. JSON-LD на страницах прайсов содержит только FAQ и организацию, цен моделей там нет. Поэтому источник цен — публичные `/models`-эндпоинты.
-
-Рекомендуемое расписание: `health` каждые 30 минут, `prices` раз в сутки
-(cron / GitHub Actions / планировщик хостинга).
-
-## Переменные окружения
-
-Скопируйте `.env.example` → `.env.local`:
-
-| Переменная | Зачем |
+| File | What it contains |
 |---|---|
-| `ADMIN_PASSWORD` | пароль админки (без него — `admin`) |
-| `ADMIN_SECRET` | секрет подписи cookie (по умолчанию выводится из пароля) |
-| `DATA_DIR` | путь к каталогу данных, по умолчанию `./data` |
-| `FX_CNY_USD` | курс юаня для краулера, по умолчанию `0.14` |
-| `TR_KEY_<SLUG>` | API-ключ провайдера для health-проб |
+| [`data/models.json`](data/models.json) | Model catalogue + official prices + source URLs |
+| [`data/official-prices.json`](data/official-prices.json) | Official vendor prices with per-entry source and date |
+| [`data/providers.json`](data/providers.json) | Provider directory + crawl configs |
+| [`data/prices.json`](data/prices.json) | Latest provider quotes (USD per 1M tokens) |
+| Live feed | `GET https://tokenprice.rest/api/prices.json` |
 
-## SEO и i18n
+## CLI
 
-- `/{lang}/...`, `lang ∈ {ru, en}`, `/` → `/ru`, hreflang в метаданных.
-- `sitemap.xml` генерируется из данных: статика + страницы моделей + страницы
-  «где дешевле» (`/cheapest/<model>`) + статьи блога; `robots.txt` закрывает
-  `/api/`, `/visit/` и админку.
-- Каждая страница модели/провайдера — свой canonical и description.
-- FAQ-блоки с JSON-LD `FAQPage` на страницах моделей и `/cheapest/*`,
-  `BreadcrumbList` на них же, `Article` на статьях блога. Тексты FAQ
-  генерируются из актуальных котировок (`src/lib/seo-copy.ts`).
-- Публичный фид цен: `GET /api/prices.json` (unit: USD per 1M).
+A tiny dependency-free CLI that uses the same feed:
 
-## Деплой (Cloudflare Workers + D1)
+```bash
+npx tokenrate-cli price gpt-5-6-luna --in 2000 --out 500
+npx tokenrate-cli cheapest --mix dev
+```
 
-Прод: `https://tokenprice.rest` (Worker `tokenprice` + D1 `tokenprice`).
+Source: [`cli/`](cli/).
 
-- `src/lib/db.ts` выбирает хранилище: на Cloudflare — D1-binding `DB`,
-  локально — файлы `data/*.json`. API `store.ts` не меняется.
-- `npm run cf:build` — OpenNext-сборка в `.open-next/`;
-  `npm run cf:deploy` — сборка и публикация воркера.
-  Сборку запускать при остановленном `next dev` (общий `.next/` ломает бандл).
-- `npm run db:push` — заливать локальные данные (провайдеры, модели, котировки,
-  пробы за 30 дней) в удалённый D1. Заявки и клики не трогает — они живут только в проде.
-- Миграции: `npm run db:migrate` (`wrangler d1 migrations apply tokenprice --remote`).
-- Windows-планировщик (`scripts/schedule-crawler.ps1`): каждые 30 мин —
-  `crawler health` + push, ежедневно в 04:00 — `crawler prices` + push.
-- Секреты задаются через `wrangler secret put ADMIN_PASSWORD`.
-  (По умолчанию в проде действует пароль `admin` — сменить обязательно.)
+## Methodology
 
-## Статус и ограничения
+- **Blended cost** normalises "price per 1M tokens" to a chosen input:output
+  ratio (chat, code, agents), because output tokens cost 3–6× input everywhere.
+- **Quality index** = 40% uptime + 30% stability (30d) + 30% p95 latency, from
+  probes every 30 minutes against public endpoints.
+- Referral/sponsored links never affect ranking. Listings without a verified
+  price source are labelled as demo.
 
-- Демо-котировки провайдеров (`isDemo: true`) сгенерированы из официальных цен
-  и помечены в интерфейсе. Реальные источники краулера: DeepInfra, Novita, Polza.
-- Официальные цены моделей — реальные, со ссылками на прайсы вендоров,
-  в `data/official-prices.json` (обновлять вручную или через скрипт сверки).
-- Курсы валют для пересчёта RUB/CNY фиксированы на дату в `crawler/index.ts`
-  и переопределяются переменными `FX_RUB_USD`, `FX_CNY_USD`.
-- Иконки провайдеров — буквенные марки; логотипы подключаются позже.
+## This repository
+
+The website, admin panel and crawler are the same codebase — see
+[docs/PROJECT.md](docs/PROJECT.md) (Next.js 16 + Cloudflare Workers + D1).
+
+## Disclaimer
+
+Prices are collected in good faith and are provided **without warranty of any
+kind**. Always verify prices on the vendor's own page before purchasing.
+Vendors change pricing, run promos with deadlines and add new models faster
+than any static table can follow.
+
+## License
+
+Data and code in this repository are licensed under [MIT](LICENSE).

@@ -1,0 +1,19 @@
+{
+  "name": "tokenrate-cli",
+  "version": "0.1.0",
+  "description": "CLI for comparing LLM API token prices from the TokenRate feed (https://tokenprice.rest/api/prices.json)",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "tokenrate": "./index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["llm", "api", "pricing", "openai", "anthropic", "google", "tokens", "cost"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iwaki9/tokenprice.git",
+    "directory": "cli"
+  }
+}
