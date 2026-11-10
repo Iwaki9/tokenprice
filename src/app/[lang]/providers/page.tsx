@@ -5,6 +5,7 @@ import { dictionaries } from "@/lib/i18n";
 import { computeStats, readProbes, type MonitorStats } from "@/lib/monitoring";
 import { blendedCost } from "@/lib/ranking";
 import { getDb } from "@/lib/store";
+import { isListable } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
 export const revalidate = 60;
@@ -50,7 +51,12 @@ export default async function ProvidersPage({
   const modelsBySlug = new Map(db.models.map((m) => [m.slug, m]));
 
   const providers = db.providers
-    .filter((p) => p.status === "active")
+    .filter((p) =>
+      isListable(p, {
+        stats: stats.get(p.slug) ?? null,
+        quotes: db.prices.filter((q) => q.providerSlug === p.slug),
+      }),
+    )
     .map((provider) => {
       const quotes = db.prices.filter((q) => q.providerSlug === provider.slug);
       let bestSaving = 0;

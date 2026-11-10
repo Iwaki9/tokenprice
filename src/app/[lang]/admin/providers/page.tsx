@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { DemoTag } from "@/components/ui";
+import { computeStats, readProbes } from "@/lib/monitoring";
 import { dictionaries } from "@/lib/i18n";
 import { getClickStats, getDb } from "@/lib/store";
 import { isLang } from "@/lib/site";
+import { reasonNotListable } from "@/lib/visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +18,13 @@ export default async function AdminProviders({
   const dict = dictionaries[lang];
   const db = await getDb();
   const clicks = await getClickStats(30);
+  const probes = await readProbes();
+  const probesByProvider = new Map<string, typeof probes>();
+  for (const probe of probes) {
+    const list = probesByProvider.get(probe.providerSlug) ?? [];
+    list.push(probe);
+    probesByProvider.set(probe.providerSlug, list);
+  }
 
   return (
     <div>
@@ -37,6 +46,7 @@ export default async function AdminProviders({
                 <th className="px-4 py-2 text-right font-medium">{dict.common.models}</th>
                 <th className="px-4 py-2 text-right font-medium">{dict.admin.clicks}</th>
                 <th className="px-4 py-2 font-medium">Referral</th>
+                <th className="px-4 py-2 font-medium">{lang === "ru" ? "Сайт" : "Site"}</th>
                 <th className="px-4 py-2" />
               </tr>
             </thead>
@@ -44,6 +54,12 @@ export default async function AdminProviders({
               {db.providers.map((provider) => {
                 const count = db.prices.filter((q) => q.providerSlug === provider.slug).length;
                 const stat = clicks.get(provider.slug);
+                const hiddenReason = reasonNotListable(provider, {
+                  stats: probesByProvider.has(provider.slug)
+                    ? computeStats(probesByProvider.get(provider.slug)!)
+                    : null,
+                  quotes: db.prices.filter((q) => q.providerSlug === provider.slug),
+                });
                 return (
                   <tr key={provider.slug} className="row-hover border-b border-line/70 last:border-0">
                     <td className="px-4 py-2.5">
@@ -66,6 +82,17 @@ export default async function AdminProviders({
                       ) : (
                         <span className="text-[11.5px]" style={{ color: "var(--color-warn)" }}>
                           —
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-2.5">
+                      {hiddenReason ? (
+                        <span className="text-[11px] text-muted" title={hiddenReason}>
+                          🚫 {hiddenReason}
+                        </span>
+                      ) : (
+                        <span className="text-[11px]" style={{ color: "var(--color-save)" }}>
+                          ✓ {lang === "ru" ? "на сайте" : "listed"}
                         </span>
                       )}
                     </td>

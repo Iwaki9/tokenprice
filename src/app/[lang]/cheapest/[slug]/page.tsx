@@ -6,6 +6,7 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/json-ld";
 import { usd, pct, tokens } from "@/lib/format";
 import { mixById, buildBoard } from "@/lib/ranking";
 import { getDb } from "@/lib/store";
+import { getListableProviders } from "@/lib/visibility";
 import { cheapestCopy, modelFaq } from "@/lib/seo-copy";
 import { isLang, site } from "@/lib/site";
 
@@ -16,7 +17,7 @@ async function load(slug: string) {
   const model = db.models.find((m) => m.slug === slug);
   if (!model) return null;
   const vendor = db.vendors.find((v) => v.slug === model.vendor);
-  const providers = db.providers.filter((p) => p.status === "active");
+  const providers = await getListableProviders();
   const quotes = db.prices.filter((q) => q.modelSlug === slug);
   const rows = buildBoard(model, providers, quotes, { budget: 100, ratio: mixById("dev").ratio });
   return { model, vendor, rows };

@@ -11,6 +11,7 @@ import { dictionaries } from "@/lib/i18n";
 import { buildBoard, mixById } from "@/lib/ranking";
 import { computeStats, readProbes, type MonitorStats } from "@/lib/monitoring";
 import { getDb } from "@/lib/store";
+import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
 export const revalidate = 60;
@@ -73,7 +74,7 @@ export default async function ModelPage({
   if (!model) notFound();
 
   const vendor = db.vendors.find((v) => v.slug === model.vendor);
-  const providers = db.providers.filter((p) => p.status === "active");
+  const providers = await getListableProviders();
   const quotes = db.prices.filter((q) => q.modelSlug === slug);
 
   const budget = Math.min(100_000, Math.max(5, Number(query.budget) || 100));

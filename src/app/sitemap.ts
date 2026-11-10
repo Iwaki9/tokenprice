@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
 import { getDb } from "@/lib/store";
 import { site } from "@/lib/site";
+import { getListableProviders } from "@/lib/visibility";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const db = await getDb();
@@ -57,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       });
     }
-    for (const provider of db.providers.filter((p) => p.status === "active")) {
+    for (const provider of await getListableProviders()) {
       entries.push({
         url: `${base}/${lang}/providers/${provider.slug}`,
         lastModified: now,

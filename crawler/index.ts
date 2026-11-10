@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Price + health crawler.
  *
  *   npx tsx crawler/index.ts prices                 # read every provider source
@@ -49,11 +49,20 @@ const flagValue = (name: string) => {
 const dry = flag("dry");
 const verbose = flag("verbose");
 const includeDemo = flag("include-demo");
-const only = flagValue("only");
+// --only accepts a single slug or a comma-separated list.
+const onlySet = flagValue("only")
+  ? new Set(
+      flagValue("only")!
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+    )
+  : null;
+const matchesOnly = (slug: string) => !onlySet || onlySet.has(slug);
 
-// CBR: CNY 12.3098 RUB and USD 82.7536 RUB → 1 CNY = 12.3098 / 82.7536 USD.
+// CBR: CNY 12.3098 RUB and USD 82.7536 RUB в†’ 1 CNY = 12.3098 / 82.7536 USD.
 const FX_CNY_USD = Number(process.env.FX_CNY_USD ?? String(12.3098 / 82.7536));
-// Defaults are the CBR daily rate (ЦБ РФ) for the last refresh; override via env.
+// Defaults are the CBR daily rate (Р¦Р‘ Р Р¤) for the last refresh; override via env.
 const FX_RUB_USD = Number(process.env.FX_RUB_USD ?? String(1 / 82.7536));
 
 const FX: Record<string, number> = { USD: 1, CNY: FX_CNY_USD, RUB: FX_RUB_USD };
@@ -153,7 +162,7 @@ const NOISE = new Set([
 function tokenSignature(raw: string): string {
   const tokens = raw
     .toLowerCase()
-    .replace(/^[a-z0-9._-]+\//, "") // vendor path prefix: anthropic/claude-…
+    .replace(/^[a-z0-9._-]+\//, "") // vendor path prefix: anthropic/claude-вЂ¦
     .replace(/[._]/g, "-")
     .split(/[^a-z0-9]+/)
     .filter((token) => token && !NOISE.has(token))
@@ -415,7 +424,7 @@ function extractJson(
     if (!Number.isFinite(inputLeaf.value) || !Number.isFinite(outputLeaf.value)) continue;
 
     const fx = FX[config.currency ?? "USD"] ?? 1;
-    // Convert to USD first, then fix the scale: RUB/CNY values are 10–100×
+    // Convert to USD first, then fix the scale: RUB/CNY values are 10вЂ“100Г—
     // larger before conversion and would otherwise look like a wrong unit.
     const input = normalizeScale(inputLeaf.value * UNIT_MULT[inputLeaf.unit] * fx);
     const output = normalizeScale(outputLeaf.value * UNIT_MULT[outputLeaf.unit] * fx);
@@ -447,7 +456,7 @@ function extractJson(
   return {
     rows: [...byModel.values()],
     adapter: adapterName,
-    detail: `list ${list.length} rows · units ${[...units].join("/") || "—"}`,
+    detail: `list ${list.length} rows В· units ${[...units].join("/") || "вЂ”"}`,
     unmatched,
   };
 }
@@ -517,7 +526,7 @@ function cellTexts(html: string) {
   );
 }
 
-/** Pulls every price-looking number out of one cell ("$1.20 / $3.50" → [1.2, 3.5]). */
+/** Pulls every price-looking number out of one cell ("$1.20 / $3.50" в†’ [1.2, 3.5]). */
 function cellNumbers(cell: string) {
   return [...cell.matchAll(/(?:\$|usd\s*)?(\d+(?:[.,]\d+)?)/gi)]
     .map((match) => Number(match[1].replace(",", ".")))
@@ -575,7 +584,7 @@ function extractHtmlTable(body: string, models: ModelIndex, config: CrawlConfig)
       if (!Number.isFinite(input) || !Number.isFinite(output)) continue;
 
       const joined = cells.join(" ");
-      const cny = /¥|cny|元|rmb/i.test(joined);
+      const cny = /ВҐ|cny|е…ѓ|rmb/i.test(joined);
       const fx = cny ? FX_CNY_USD : (FX[config.currency ?? "USD"] ?? 1);
       const tiny = Math.max(input, output) < 0.01;
       const scale = tiny ? 1_000_000 : 1;
@@ -719,14 +728,14 @@ async function crawlPrices() {
   const report: string[] = [];
 
   for (const provider of providers) {
-    if (only && provider.slug !== only) continue;
+    if (!matchesOnly(provider.slug)) continue;
     if (provider.isDemo && !includeDemo) continue;
     if (!provider.pricingUrl) continue;
 
     try {
       const fetched = await fetchSource(provider.pricingUrl);
       if (!fetched.ok) {
-        report.push(`${provider.slug}: HTTP ${fetched.status} — skipped (${fetched.contentType.split(";")[0]})`);
+        report.push(`${provider.slug}: HTTP ${fetched.status} вЂ” skipped (${fetched.contentType.split(";")[0]})`);
         continue;
       }
       const { adapter, config } = resolveAdapter(provider, fetched);
@@ -734,7 +743,7 @@ async function crawlPrices() {
       const header = `${provider.slug}: ${extraction.rows.length} quotes via ${adapter} (${extraction.detail}, ${fetched.ms}ms)`;
 
       if (!extraction.rows.length) {
-        report.push(`${header} — nothing recognised at ${provider.pricingUrl}`);
+        report.push(`${header} вЂ” nothing recognised at ${provider.pricingUrl}`);
         if (extraction.unmatched.length) {
           report.push(`  seen but unmatched: ${extraction.unmatched.slice(0, 8).join(", ")}`);
         }
@@ -763,7 +772,7 @@ async function crawlPrices() {
         updated += 1;
         if (verbose) {
           report.push(
-            `  ✓ ${quote.sourceId} → ${model.slug}  ${short(next.input)} / ${short(next.output)} per 1M`,
+            `  вњ“ ${quote.sourceId} в†’ ${model.slug}  ${short(next.input)} / ${short(next.output)} per 1M`,
           );
         }
       }
@@ -773,7 +782,7 @@ async function crawlPrices() {
         const shown = extraction.unmatched.slice(0, 6).join(", ");
         report.push(
           `  ${extraction.unmatched.length} source models not in the catalogue: ${shown}${
-            extraction.unmatched.length > 6 ? ", …" : ""
+            extraction.unmatched.length > 6 ? ", вЂ¦" : ""
           }`,
         );
       }
@@ -797,7 +806,7 @@ async function crawlHealth() {
   const rows: string[] = [];
 
   for (const provider of providers) {
-    if (only && provider.slug !== only) continue;
+    if (!matchesOnly(provider.slug)) continue;
     if (provider.isDemo && !includeDemo) continue;
     if (!provider.apiBase) continue;
 
@@ -877,8 +886,8 @@ async function inspect(target: string) {
 
   const fetched = await fetchSource(url);
   console.log(
-    `status ${fetched.status} · ${fetched.contentType.split(";")[0] || "?"} · ` +
-      `${(fetched.bytes / 1024).toFixed(1)} KB · ${fetched.ms} ms`,
+    `status ${fetched.status} В· ${fetched.contentType.split(";")[0] || "?"} В· ` +
+      `${(fetched.bytes / 1024).toFixed(1)} KB В· ${fetched.ms} ms`,
   );
   if (!fetched.ok) {
     console.log(`body head: ${fetched.body.slice(0, 200).replace(/\s+/g, " ")}`);
@@ -897,15 +906,15 @@ async function inspect(target: string) {
   for (const row of extraction.rows) {
     const model = matchModel(row.sourceId, index, config.modelAliases);
     console.log(
-      `  ✓ ${row.sourceId} → ${model?.slug ?? "?"}  ${short(row.input)} in / ${short(row.output)} out` +
+      `  вњ“ ${row.sourceId} в†’ ${model?.slug ?? "?"}  ${short(row.input)} in / ${short(row.output)} out` +
         (row.cacheRead ? ` / ${short(row.cacheRead)} cache` : ""),
     );
   }
 
   if (extraction.unmatched.length) {
     console.log(`unmatched (${extraction.unmatched.length}):`);
-    for (const name of extraction.unmatched.slice(0, 20)) console.log(`  ✗ ${name}`);
-    if (extraction.unmatched.length > 20) console.log(`  … ${extraction.unmatched.length - 20} more`);
+    for (const name of extraction.unmatched.slice(0, 20)) console.log(`  вњ— ${name}`);
+    if (extraction.unmatched.length > 20) console.log(`  вЂ¦ ${extraction.unmatched.length - 20} more`);
   }
 
   // Nudge toward adding missing models instead of silently dropping quotes.

@@ -703,5 +703,243 @@
     "featured": true,
     "summaryRu": "GPT-6 Luna от OpenAI. Официальная цена $0.1 за 1M входных и $0.5 за 1M выходных токенов.",
     "summaryEn": "GPT-6 Luna by OpenAI. Official list price: $0.1 per 1M input and $0.5 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-6-sol",
+    "vendor": "openai",
+    "name": "GPT-6 Sol",
+    "official": {
+      "input": 2,
+      "output": 10,
+      "cacheRead": 0.2,
+      "cacheWrite": 2.5,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-6 Sol от OpenAI. Официальная цена $2 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "GPT-6 Sol by OpenAI. Official list price: $2 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-6-sol",
+    "vendor": "openai",
+    "name": "GPT-5.6 Sol",
+    "official": {
+      "input": 4,
+      "output": 20,
+      "cacheRead": 0.4,
+      "cacheWrite": 5,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.6 Sol от OpenAI. Официальная цена $4 за 1M входных и $20 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.6 Sol by OpenAI. Official list price: $4 per 1M input and $20 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-5-pro",
+    "vendor": "openai",
+    "name": "GPT-5.5 Pro",
+    "official": {
+      "input": 30,
+      "output": 180,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.5 Pro от OpenAI. Официальная цена $30 за 1M входных и $180 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.5 Pro by OpenAI. Official list price: $30 per 1M input and $180 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-4",
+    "vendor": "openai",
+    "name": "GPT-5.4",
+    "official": {
+      "input": 2.5,
+      "output": 15,
+      "cacheRead": 0.25,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.4 от OpenAI. Официальная цена $2.5 за 1M входных и $15 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.4 by OpenAI. Official list price: $2.5 per 1M input and $15 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-4-mini",
+    "vendor": "openai",
+    "name": "GPT-5.4 mini",
+    "official": {
+      "input": 0.75,
+      "output": 4.5,
+      "cacheRead": 0.075,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.4 mini от OpenAI. Официальная цена $0.75 за 1M входных и $4.5 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.4 mini by OpenAI. Official list price: $0.75 per 1M input and $4.5 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-4-nano",
+    "vendor": "openai",
+    "name": "GPT-5.4 nano",
+    "official": {
+      "input": 0.2,
+      "output": 1.25,
+      "cacheRead": 0.02,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.4 nano от OpenAI. Официальная цена $0.2 за 1M входных и $1.25 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.4 nano by OpenAI. Official list price: $0.2 per 1M input and $1.25 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-2",
+    "vendor": "openai",
+    "name": "GPT-5.2",
+    "official": {
+      "input": 1.75,
+      "output": 14,
+      "cacheRead": 0.175,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.2 от OpenAI. Официальная цена $1.75 за 1M входных и $14 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.2 by OpenAI. Official list price: $1.75 per 1M input and $14 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-2-pro",
+    "vendor": "openai",
+    "name": "GPT-5.2 Pro",
+    "official": {
+      "input": 21,
+      "output": 168,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.2 Pro от OpenAI. Официальная цена $21 за 1M входных и $168 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.2 Pro by OpenAI. Official list price: $21 per 1M input and $168 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-1",
+    "vendor": "openai",
+    "name": "GPT-5.1",
+    "official": {
+      "input": 1.25,
+      "output": 10,
+      "cacheRead": 0.125,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5.1 от OpenAI. Официальная цена $1.25 за 1M входных и $10 за 1M выходных токенов.",
+    "summaryEn": "GPT-5.1 by OpenAI. Official list price: $1.25 per 1M input and $10 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-nano",
+    "vendor": "openai",
+    "name": "GPT-5 nano",
+    "official": {
+      "input": 0.05,
+      "output": 0.4,
+      "cacheRead": 0.005,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5 nano от OpenAI. Официальная цена $0.05 за 1M входных и $0.4 за 1M выходных токенов.",
+    "summaryEn": "GPT-5 nano by OpenAI. Official list price: $0.05 per 1M input and $0.4 per 1M output tokens."
+  },
+  {
+    "slug": "gpt-5-pro",
+    "vendor": "openai",
+    "name": "GPT-5 Pro",
+    "official": {
+      "input": 15,
+      "output": 120,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "GPT-5 Pro от OpenAI. Официальная цена $15 за 1M входных и $120 за 1M выходных токенов.",
+    "summaryEn": "GPT-5 Pro by OpenAI. Official list price: $15 per 1M input and $120 per 1M output tokens."
+  },
+  {
+    "slug": "o3-pro",
+    "vendor": "openai",
+    "name": "o3-pro",
+    "official": {
+      "input": 20,
+      "output": 80,
+      "cacheRead": null,
+      "cacheWrite": null,
+      "sourceUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "o3-pro от OpenAI. Официальная цена $20 за 1M входных и $80 за 1M выходных токенов.",
+    "summaryEn": "o3-pro by OpenAI. Official list price: $20 per 1M input and $80 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-3-6-flash",
+    "vendor": "google",
+    "name": "Gemini 3.6 Flash",
+    "official": {
+      "input": 0.75,
+      "output": 3.75,
+      "cacheRead": 0.075,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 3.6 Flash от Google. Официальная цена $0.75 за 1M входных и $3.75 за 1M выходных токенов.",
+    "summaryEn": "Gemini 3.6 Flash by Google. Official list price: $0.75 per 1M input and $3.75 per 1M output tokens."
+  },
+  {
+    "slug": "gemini-3-5-flash-lite",
+    "vendor": "google",
+    "name": "Gemini 3.5 Flash-Lite",
+    "official": {
+      "input": 0.3,
+      "output": 2.5,
+      "cacheRead": 0.03,
+      "cacheWrite": null,
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing"
+    },
+    "contextWindow": 1048576,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Gemini 3.5 Flash-Lite от Google. Официальная цена $0.3 за 1M входных и $2.5 за 1M выходных токенов.",
+    "summaryEn": "Gemini 3.5 Flash-Lite by Google. Official list price: $0.3 per 1M input and $2.5 per 1M output tokens."
   }
 ]

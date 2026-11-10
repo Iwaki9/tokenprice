@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CompareTable } from "@/components/compare-table";
 import { dictionaries } from "@/lib/i18n";
 import { getDb } from "@/lib/store";
+import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
 export const revalidate = 60;
@@ -35,7 +36,7 @@ export default async function ComparePage({
   const db = await getDb();
 
   const vendorBySlug = new Map(db.vendors.map((v) => [v.slug, v]));
-  const providers = db.providers.filter((p) => p.status === "active");
+  const providers = await getListableProviders();
   const providerBySlug = new Map(providers.map((p) => [p.slug, p]));
 
   const models = db.models

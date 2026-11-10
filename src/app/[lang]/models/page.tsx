@@ -3,6 +3,7 @@ import { ModelCatalog } from "@/components/model-catalog";
 import { dictionaries } from "@/lib/i18n";
 import { buildBoard } from "@/lib/ranking";
 import { getDb } from "@/lib/store";
+import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 import type { VendorView } from "@/lib/view";
 
@@ -36,7 +37,7 @@ export default async function ModelsPage({
   const dict = dictionaries[lang];
   const db = await getDb();
 
-  const providers = db.providers.filter((p) => p.status === "active");
+  const providers = await getListableProviders();
   const vendorViews: VendorView[] = db.vendors.map((v) => ({
     slug: v.slug,
     name: v.name,
