@@ -16,3 +16,8 @@ data/probes.jsonl
 
 .DS_Store
 Thumbs.db
+
+
+# local secrets
+*token*.txt
+*токен*.txt
