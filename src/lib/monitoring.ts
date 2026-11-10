@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { getD1 } from "./db";
 
 export type Probe = {
   providerSlug: string;
@@ -32,6 +33,25 @@ const DATA_DIR = process.env.DATA_DIR
 const PROBE_FILE = path.join(DATA_DIR, "probes.jsonl");
 
 export async function readProbes(limit = 60_000): Promise<Probe[]> {
+  const db = await getD1();
+  if (db) {
+    const result = await db
+      .prepare(
+        "SELECT provider_slug, at, ok, status, latency_ms, error FROM probes ORDER BY at DESC LIMIT ?",
+      )
+      .bind(limit)
+      .all<Record<string, unknown>>();
+    return result.results
+      .map((r) => ({
+        providerSlug: String(r.provider_slug),
+        at: String(r.at),
+        ok: Boolean(r.ok),
+        status: r.status != null ? Number(r.status) : null,
+        latencyMs: r.latency_ms != null ? Number(r.latency_ms) : null,
+        error: r.error ? String(r.error) : undefined,
+      }))
+      .reverse();
+  }
   try {
     const raw = await fs.readFile(/*turbopackIgnore: true*/ PROBE_FILE, "utf8");
     const lines = raw.split("\n").filter(Boolean);
@@ -44,6 +64,19 @@ export async function readProbes(limit = 60_000): Promise<Probe[]> {
 
 export async function appendProbes(probes: Probe[]) {
   if (probes.length === 0) return;
+  const db = await getD1();
+  if (db) {
+    await db.batch(
+      probes.map((p) =>
+        db
+          .prepare(
+            "INSERT INTO probes (provider_slug, at, ok, status, latency_ms, error) VALUES (?, ?, ?, ?, ?, ?)",
+          )
+          .bind(p.providerSlug, p.at, p.ok ? 1 : 0, p.status, p.latencyMs, p.error ?? null),
+      ),
+    );
+    return;
+  }
   await fs.mkdir(DATA_DIR, { recursive: true });
   const payload = probes.map((p) => JSON.stringify(p)).join("\n");
   await fs.appendFile(PROBE_FILE, `${payload}\n`, "utf8");

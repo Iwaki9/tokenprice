@@ -1,4 +1,3 @@
-import { lookup } from "node:dns/promises";
 import { NextResponse, type NextRequest } from "next/server";
 
 export const runtime = "nodejs";
@@ -43,11 +42,18 @@ function isPrivateIp(ip: string) {
   );
 }
 
-async function assertPublicHost(hostname: string) {
-  const records = await lookup(hostname, { all: true });
-  if (records.length === 0) throw new Error("dns");
-  for (const record of records) {
-    if (isPrivateIp(record.address)) throw new Error("private");
+/**
+ * Workers has no DNS lookup, so only literal hosts are checked here: localhost,
+ * private IP literals and internal names. Hostnames that resolve to private
+ * addresses are still possible and are accepted as a known limit.
+ */
+function assertPublicHost(hostname: string) {
+  const host = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".internal") || host.endsWith(".local")) {
+    throw new Error("private");
+  }
+  if (/^[\d.]+$/.test(host) || host.includes(":")) {
+    if (isPrivateIp(host)) throw new Error("private");
   }
 }
 
@@ -89,7 +95,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await assertPublicHost(url.hostname);
+    assertPublicHost(url.hostname);
   } catch (error) {
     const reason = (error as Error).message === "private" ? "private" : "dns";
     return NextResponse.json({ ok: false, error: reason }, { status: 400 });

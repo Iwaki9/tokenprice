@@ -1,9 +1,9 @@
 export const site = {
   name: "TokenRate",
-  domain: "tokenrate.io",
+  domain: "tokenprice.rest",
   defaultLang: "ru" as const,
   /** Public contact address shown on legal pages and the submission form. */
-  email: "hello@tokenrate.io",
+  email: "hello@tokenprice.rest",
   social: "@tokenrate",
 };
 

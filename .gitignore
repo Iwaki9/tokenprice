@@ -21,3 +21,7 @@ Thumbs.db
 # local secrets
 *token*.txt
 *токен*.txt
+
+.open-next/
+.wrangler/
+data/.d1-push/
