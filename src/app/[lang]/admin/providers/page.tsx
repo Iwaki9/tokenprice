@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { AdminDeleteProvider } from "@/components/admin/delete-provider-button";
 import { DemoTag } from "@/components/ui";
 import { computeStats, readProbes } from "@/lib/monitoring";
 import { dictionaries } from "@/lib/i18n";
+import { deleteProviderAction } from "@/lib/actions/admin";
 import { getClickStats, getDb } from "@/lib/store";
 import { isLang } from "@/lib/site";
 import { reasonNotListable } from "@/lib/visibility";
@@ -97,12 +99,23 @@ export default async function AdminProviders({
                       )}
                     </td>
                     <td className="px-4 py-2.5 text-right">
-                      <Link
-                        href={`/${lang}/admin/providers/${provider.slug}`}
-                        className="text-[12px] text-brand underline underline-offset-2"
-                      >
-                        {dict.common.edit}
-                      </Link>
+                      <div className="flex items-center justify-end gap-2">
+                        <Link
+                          href={`/${lang}/admin/providers/${provider.slug}`}
+                          className="text-[12px] text-brand underline underline-offset-2"
+                        >
+                          {dict.common.edit}
+                        </Link>
+                        <AdminDeleteProvider
+                          action={deleteProviderAction}
+                          lang={lang}
+                          slug={provider.slug}
+                          confirmLabel={`${dict.admin.confirmDelete} (${provider.name})`}
+                          deleteLabel={dict.common.delete}
+                          cancelLabel={dict.common.cancel}
+                          pendingLabel={lang === "ru" ? "Удаление…" : "Deleting…"}
+                        />
+                      </div>
                     </td>
                   </tr>
                 );

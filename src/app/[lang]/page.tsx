@@ -22,6 +22,8 @@ export default async function HomePage({
   const db = await getDb();
 
   const providers = await getListableProviders();
+  const listedSlugs = new Set(providers.map((p) => p.slug));
+  const visibleQuotes = db.prices.filter((q) => listedSlugs.has(q.providerSlug)).length;
   const vendorViews: VendorView[] = db.vendors.map((v) => ({
     slug: v.slug,
     name: v.name,
@@ -76,6 +78,7 @@ export default async function HomePage({
   const withRows = boards.filter((b) => b.rows.length > 0);
   const hasDemo = providers.some((p) => p.isDemo);
   const newest = db.prices
+    .filter((q) => listedSlugs.has(q.providerSlug))
     .map((q) => q.observedAt ?? "")
     .sort()
     .at(-1);
@@ -92,14 +95,16 @@ export default async function HomePage({
             {dict.home.subtitle}
           </p>
 
+          {/* Counts match what a visitor can actually open on the site:
+              listed providers, their quotes, and the public model catalogue. */}
           <div className="mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t border-line pt-6 sm:grid-cols-4">
             <StatBlock
-              value={String(db.providers.length)}
+              value={String(providers.length)}
               label={dict.home.statsProviders}
             />
             <StatBlock value={String(db.models.length)} label={dict.home.statsModels} />
             <StatBlock
-              value={String(db.prices.length)}
+              value={String(visibleQuotes)}
               label={dict.home.statsQuotes}
               hint={dict.home.statQuotesNote}
             />
