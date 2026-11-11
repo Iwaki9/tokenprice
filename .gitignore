@@ -25,3 +25,5 @@ Thumbs.db
 .open-next/
 .wrangler/
 data/.d1-push/
+
+data/.d1-push-marker.json

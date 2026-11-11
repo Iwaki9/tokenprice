@@ -7,15 +7,12 @@ import type { PriceQuote, Provider } from "./types";
  * Visibility gate for the public site.
  * A provider is listable when ALL of these hold:
  * 1. admin status is "active";
- * 2. a referral URL is configured (monetisation requirement);
- * 3. it is confirmed reachable: either a successful health probe or a fresh
- *    crawled quote within FRESH_MS.
- * This lets us park many providers in the directory: they appear on the site
- * automatically once the crawler confirms them and an affiliate link is added,
- * and disappear again if they go dark. Admin pages always see everything.
- *
- * Demo entries are exempt from rule 3 only (they have no real endpoint to
- * probe) and stay visible as clearly-labelled placeholders.
+ * 2. it is NOT a demo entry — the public site shows real providers only;
+ * 3. a referral URL is configured — until you sign up for the partner
+ *    programme, the provider stays in the directory (admin) but off the site;
+ * 4. it is confirmed reachable: a successful health probe or a crawled quote
+ *    within FRESH_MS.
+ * Admin pages always see everything.
  */
 
 const FRESH_MS = 36 * 60 * 60 * 1000;
@@ -34,8 +31,8 @@ export type ListableContext = {
 
 export function isListable(provider: Provider, ctx: ListableContext): boolean {
   if (provider.status !== "active") return false;
+  if (provider.isDemo) return false;
   if (!provider.referralUrl) return false;
-  if (provider.isDemo) return true;
   const now = ctx.now ?? Date.now();
   const probeOk = !!ctx.stats?.lastOkAt && isFresh(ctx.stats.lastOkAt, now);
   const quoteOk = ctx.quotes.some((q) => isFresh(q.observedAt, now));
@@ -44,8 +41,8 @@ export function isListable(provider: Provider, ctx: ListableContext): boolean {
 
 export function reasonNotListable(provider: Provider, ctx: ListableContext, now = Date.now()): string {
   if (provider.status !== "active") return `status=${provider.status}`;
+  if (provider.isDemo) return "demo — never shown publicly";
   if (!provider.referralUrl) return "no referral url";
-  if (provider.isDemo) return "";
   const probeOk = !!ctx.stats?.lastOkAt && isFresh(ctx.stats.lastOkAt, now);
   const quoteOk = ctx.quotes.some((q) => isFresh(q.observedAt, now));
   if (!probeOk && !quoteOk) return "unreachable (no fresh probe or quote)";

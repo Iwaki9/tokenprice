@@ -232,6 +232,8 @@ function matchModel(sourceId: string, index: ModelIndex, aliases?: Record<string
 
 type RawPrice = {
   sourceId: string;
+  /** catalogue slug when the extractor already resolved it (html-table cells) */
+  modelSlug?: string;
   input: number;
   output: number;
   cacheRead?: number | null;
@@ -528,7 +530,12 @@ function cellTexts(html: string) {
 
 /** Pulls every price-looking number out of one cell ("$1.20 / $3.50" в†’ [1.2, 3.5]). */
 function cellNumbers(cell: string) {
-  return [...cell.matchAll(/(?:\$|usd\s*)?(\d+(?:[.,]\d+)?)/gi)]
+  // Text after "official" is the vendor list price quoted by relay tables
+  // (cells like "$0.2 / 1M tokens Official $10"), not a cache tier.
+  const own = cell.split(/official/i)[0];
+  // Drop unit markers ("1M tokens", "500K") so their digits are not read as prices.
+  const cleaned = own.replace(/\b\d+(?:[.,]\d+)?\s?[mk](?![a-z0-9])/gi, " ");
+  return [...cleaned.matchAll(/(?:\$|usd\s*)?(\d+(?:[.,]\d+)?)/gi)]
     .map((match) => Number(match[1].replace(",", ".")))
     .filter((value) => Number.isFinite(value));
 }
@@ -562,12 +569,21 @@ function extractHtmlTable(body: string, models: ModelIndex, config: CrawlConfig)
       for (let index = 0; index < cells.length; index += 1) {
         const cell = cells[index];
         if (cell.length > 90) continue;
-        const candidate = matchModel(cell, models, config.modelAliases);
-        if (candidate) {
-          model = candidate;
-          nameIndex = index;
-          break;
+        // Some tables put "Pretty Name vendor/model-slug" in one cell; the
+        // slug token is the strongest key, so try the whole cell then slugs.
+        const candidates = [
+          cell,
+          ...cell.split(/\s+/).filter((token) => /[-._]/.test(token) && /[a-z]/i.test(token) && !/^\$/.test(token)),
+        ];
+        for (const text of candidates) {
+          const candidate = matchModel(text, models, config.modelAliases);
+          if (candidate) {
+            model = candidate;
+            nameIndex = index;
+            break;
+          }
         }
+        if (model) break;
       }
       if (!model) {
         if (/[a-zA-Z]{3}/.test(cells[0]) && /\d/.test(cells[0])) unmatched.push(cells[0]);
@@ -592,6 +608,7 @@ function extractHtmlTable(body: string, models: ModelIndex, config: CrawlConfig)
 
       rows.push({
         sourceId: cells[nameIndex],
+        modelSlug: model.slug,
         input: input * scale * fx,
         output: output * scale * fx,
         cacheRead:
@@ -751,7 +768,9 @@ async function crawlPrices() {
       }
 
       for (const quote of extraction.rows) {
-        const model = matchModel(quote.sourceId, index, config.modelAliases);
+        const model =
+          (quote.modelSlug ? index.bySlug.get(quote.modelSlug.toLowerCase()) : null) ??
+          matchModel(quote.sourceId, index, config.modelAliases);
         if (!model) continue;
         const next: PriceQuote = {
           providerSlug: provider.slug,
