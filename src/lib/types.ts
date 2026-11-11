@@ -87,7 +87,11 @@ export type CrawlAdapter =
   | "chutes"
   | "sambanova"
   | "openrouter"
-  | "together";
+  | "together"
+  | "kukuai"
+  | "wokey"
+  | "modelflare"
+  | "flyrouter";
 
 export type Provider = {
   slug: string;

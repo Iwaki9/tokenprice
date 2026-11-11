@@ -22,7 +22,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T03:26:17.563Z",
-    "updatedAt": "2026-11-10T03:26:17.563Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "novita",
@@ -47,7 +47,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T03:26:17.563Z",
-    "updatedAt": "2026-11-10T03:26:17.563Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "polza",
@@ -73,7 +73,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T03:26:17.563Z",
-    "updatedAt": "2026-11-10T03:26:17.563Z",
+    "updatedAt": "2026-11-11T18:17:56.681Z",
     "referralUrl": "https://polza.ai/?referral=cMMtKFjMak"
   },
   {
@@ -102,7 +102,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "sambanova",
@@ -127,7 +127,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "chutes",
@@ -153,7 +153,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "groq",
@@ -178,7 +178,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "cerebras",
@@ -202,7 +202,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "mistral",
@@ -223,7 +223,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "deepseek-direct",
@@ -244,7 +244,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "moonshot-direct",
@@ -265,7 +265,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "aimlapi",
@@ -293,7 +293,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "hyperbolic",
@@ -314,7 +314,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "fireworks",
@@ -338,7 +338,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "xai",
@@ -359,7 +359,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "302ai",
@@ -384,7 +384,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-10T22:31:51.147Z",
-    "updatedAt": "2026-11-10T22:31:51.147Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "clidex",
@@ -407,7 +407,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
-    "updatedAt": "2026-11-11T04:04:44.978Z",
+    "updatedAt": "2026-11-11T18:17:56.681Z",
     "crawlConfig": {
       "listPath": "prices",
       "inputPath": "consumer.input",
@@ -440,7 +440,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
-    "updatedAt": "2026-11-11T04:04:44.978Z",
+    "updatedAt": "2026-11-11T18:17:56.681Z",
     "pricingUrl": "https://foxrouter.org/api/pricing"
   },
   {
@@ -467,7 +467,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
-    "updatedAt": "2026-11-11T04:04:44.978Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "ccsub",
@@ -489,7 +489,7 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "crazyrouter",
@@ -515,7 +515,7 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T18:17:56.681Z",
     "referralUrl": "https://crazyrouter.com/sign-up?aff=CjdZ"
   },
   {
@@ -540,7 +540,7 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "kukuai",
@@ -550,7 +550,7 @@
     "homepage": "https://ozlzs.kukuai.fyi",
     "pricingUrl": "https://ozlzs.kukuai.fyi/api/dist/site/models",
     "apiBase": "https://ozlzs.kukuai.fyi/v1",
-    "crawlAdapter": "auto",
+    "crawlAdapter": "kukuai",
     "features": {
       "usageBased": true
     },
@@ -566,7 +566,7 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "modelflare",
@@ -576,7 +576,7 @@
     "homepage": "https://modelflare.dev",
     "pricingUrl": "https://modelflare.dev/zh/pricing",
     "apiBase": "https://modelflare.dev/v1",
-    "crawlAdapter": "auto",
+    "crawlAdapter": "modelflare",
     "features": {
       "usageBased": true
     },
@@ -592,7 +592,11 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:44:44.765Z",
+    "crawlConfig": {
+      "currency": "USD"
+    },
+    "note": "Google login works but has no public referral page; re-activate after operator confirms ref URL."
   },
   {
     "slug": "runapi",
@@ -615,10 +619,11 @@
       "moonshot"
     ],
     "minTopUp": null,
-    "status": "pending",
+    "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:44:56.574Z",
+    "referralUrl": "https://runapi.co/register?ref=tokenprice"
   },
   {
     "slug": "tokensmind",
@@ -642,7 +647,7 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z"
   },
   {
     "slug": "wokey",
@@ -652,7 +657,7 @@
     "homepage": "https://wokey.ai",
     "pricingUrl": "https://wokey.ai/api/models/pricing?output_modalities=text",
     "apiBase": "https://wokey.ai/v1",
-    "crawlAdapter": "auto",
+    "crawlAdapter": "wokey",
     "features": {
       "usageBased": true
     },
@@ -668,6 +673,312 @@
     "status": "pending",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T18:17:56.681Z",
+    "crawlConfig": {}
+  },
+  {
+    "slug": "passion8",
+    "name": "Passion8",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://passion8.cc",
+    "apiBase": "https://passion8.cc/v1",
+    "pricingUrl": "https://passion8.cc/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3
+    },
+    "referralUrl": "https://passion8.cc/sign-up?aff=CEjf",
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "active",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "topapi",
+    "name": "TopAPI",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://topapi.io",
+    "apiBase": "https://topapi.io/v1",
+    "pricingUrl": "https://topapi.io/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "partner-plan invite program, no public link yet"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "88api",
+    "name": "88API",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://88api.ai",
+    "apiBase": "https://88api.ai/v1",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "flagship ratios pinned at 37.5 — calibrate before activation"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "hidden",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z",
+    "note": "All 109 /api/pricing rows pinned at ratio 37.5 (admin default) — no calibrated prices, hidden until the operator configures real ratios."
+  },
+  {
+    "slug": "zzshu",
+    "name": "ZZShu",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://zzshu.cc",
+    "apiBase": "https://zzshu.cc/v1",
+    "pricingUrl": "https://zzshu.cc/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "some flagship rows pinned 37.5 — spot-check"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "shushutoken",
+    "name": "Shushutoken",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://shushutoken.com",
+    "apiBase": "https://shushutoken.com/v1",
+    "pricingUrl": "https://shushutoken.com/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "flagship rows pinned 37.5 — spot-check"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "ergouapi",
+    "name": "ErgouAPI",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://ergouapi.com",
+    "apiBase": "https://ergouapi.com/v1",
+    "pricingUrl": "https://ergouapi.com/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "linoroute",
+    "name": "Linoroute",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://linoroute.com",
+    "apiBase": "https://linoroute.com/v1",
+    "pricingUrl": "https://linoroute.com/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "dragtokens",
+    "name": "DragTokens",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://dragtokens.com",
+    "apiBase": "https://dragtokens.com/v1",
+    "pricingUrl": "https://dragtokens.com/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "jiapi",
+    "name": "JiAPI",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://jiapi.top",
+    "apiBase": "https://jiapi.top/v1",
+    "pricingUrl": "https://jiapi.top/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "intermittent TLS from this machine"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "layso",
+    "name": "Layso",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://api.layso.ai",
+    "apiBase": "https://api.layso.ai/v1",
+    "pricingUrl": "https://api.layso.ai/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "veridrop promo -10% first deposit"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "zerocat",
+    "name": "ZeroCat",
+    "taglineRu": "Релей из пользовательского каталога; цены — из публичной New-API панели сайта.",
+    "taglineEn": "Relay from the user's catalog; prices come from the site's public New-API pricing panel.",
+    "homepage": "https://zero.cat",
+    "apiBase": "https://zero.cat/v1",
+    "pricingUrl": "https://zero.cat/api/pricing",
+    "crawlAdapter": "newapi",
+    "crawlConfig": {
+      "ratioFactor": 0.3,
+      "note": "some rows pinned 37.5 — spot-check"
+    },
+    "features": {
+      "usageBased": true,
+      "crypto": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T17:15:36.899Z",
+    "updatedAt": "2026-11-11T18:17:56.682Z"
   }
 ]

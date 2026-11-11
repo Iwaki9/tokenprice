@@ -100,39 +100,47 @@ type Fetched = {
 };
 
 async function fetchSource(url: string, timeoutMs = 25_000): Promise<Fetched> {
-  const started = Date.now();
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "user-agent": UA,
-        accept: "application/json,text/html;q=0.9,*/*;q=0.8",
-        "accept-encoding": "gzip, deflate, br",
-      },
-      signal: controller.signal,
-      redirect: "follow",
-    });
-    const buffer = Buffer.from(await response.arrayBuffer());
-    let body = buffer.toString("utf8");
-    // Some hosts ship a gzipped body without asking for it.
-    if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
-      try {
-        body = gunzipSync(buffer).toString("utf8");
-      } catch {
-        /* keep the raw text */
+  let attempt = 0;
+  for (;;) {
+    const started = Date.now();
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "user-agent": UA,
+          accept: "application/json,text/html;q=0.9,*/*;q=0.8",
+          "accept-encoding": "gzip, deflate, br",
+        },
+        signal: controller.signal,
+        redirect: "follow",
+      });
+      const buffer = Buffer.from(await response.arrayBuffer());
+      let body = buffer.toString("utf8");
+      // Some hosts ship a gzipped body without asking for it.
+      if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
+        try {
+          body = gunzipSync(buffer).toString("utf8");
+        } catch {
+          /* keep the raw text */
+        }
       }
+      return {
+        ok: response.ok,
+        status: response.status,
+        contentType: response.headers.get("content-type") ?? "",
+        body,
+        bytes: buffer.length,
+        ms: Date.now() - started,
+      };
+    } catch (error) {
+      clearTimeout(timer);
+      if (attempt === 0) {
+        attempt += 1;
+        continue; // transient TLS resets to CN/US relays: one retry helps a lot
+      }
+      throw error;
     }
-    return {
-      ok: response.ok,
-      status: response.status,
-      contentType: response.headers.get("content-type") ?? "",
-      body,
-      bytes: buffer.length,
-      ms: Date.now() - started,
-    };
-  } finally {
-    clearTimeout(timer);
   }
 }
 
@@ -157,6 +165,31 @@ const NOISE = new Set([
   "int8",
   "hf",
   "experimental",
+  // relay-table padding words
+  "standard",
+  "premium",
+  "stable",
+  "award",
+  "first",
+  "topup",
+  "batch",
+  "official",
+  "original",
+  "price",
+  // vendor prefixes in HTML cells
+  "openai",
+  "anthropic",
+  "google",
+  "xai",
+  "deepmind",
+  "meta",
+  "deepseek",
+  "baichuan",
+  "mistral",
+  "qwen",
+  "moonshot",
+  "zhipu",
+  "minimax",
 ]);
 
 function tokenSignature(raw: string): string {
@@ -540,6 +573,35 @@ function cellNumbers(cell: string) {
     .filter((value) => Number.isFinite(value));
 }
 
+/**
+ * Model name as written by the source (with vendor prefixes, spaces,
+ * discount banners and similar noise). The token matcher strips vendor
+ * paths, dots/underscores and release dates, so this is lenient on purpose.
+ */
+const MODEL_NAME_RE =
+  /(claude|gpt|o\d|codex|gemini|grok|deepseek|doubao|kimi|glm|qwen|minimax|baichuan|llama|mistral|hy\b|ernie|seedance|wan\d|jina|midjourney|sora|veo|imagen|flux|stable|ideogram|crouton|fable|sonnet|opus|haiku|terra|luna|sol\b|astra|argon|nova|prime|flash|turbo|lite|nano|mini|pro|max|plus|ultra)/i;
+
+/**
+ * Reduce a source model cell ("OpenAI GPT 6.1 Sol 75% off",
+ * "claude-fable-5") to a token list the matcher can resolve.
+ * Keeps version numbers ("6.1"), strips discount / noise words.
+ */
+function modelToken(raw: string): string | null {
+  const cleaned = raw
+    .toLowerCase()
+    .replace(/\d+(\.\d+)?\s?(% off|折|скидк[а-яё]*)/g, " ")
+    .replace(/original price/g, " ")
+    .replace(/standard|premium|stable|award|first|topup|batch|high|low|medium|default/g, " ")
+    .replace(/\b\d{4,8}\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!MODEL_NAME_RE.test(cleaned)) return null;
+  const words = cleaned.split(/\s+/).filter(Boolean);
+  if (!words.length) return null;
+  // "gpt 6.1 sol" → "gpt-6.1-sol" (dots kept, spaces → dashes)
+  return words.map((w) => w.replace(/[._-]/g, "-")).join("-").replace(/-+/g, "-") || null;
+}
+
 function extractHtmlTable(body: string, models: ModelIndex, config: CrawlConfig): Extraction {
   const tables = body.match(/<table[\s\S]*?<\/table>/gi) ?? [];
   const blocks = tables.length ? tables : [body];
@@ -564,29 +626,34 @@ function extractHtmlTable(body: string, models: ModelIndex, config: CrawlConfig)
       const cells = cellTexts(row);
       if (cells.length < 2) continue;
 
+      // 1. Find the first cell that names a recognisable model. Relay tables
+      // use names like "OpenAI GPT 6.1 Sol 75% off", "claude-fable-5", or
+      // "claude-opus-5-5", so the token matcher sees a cleaned token list.
       let model: Model | null = null;
       let nameIndex = -1;
       for (let index = 0; index < cells.length; index += 1) {
         const cell = cells[index];
         if (cell.length > 90) continue;
-        // Some tables put "Pretty Name vendor/model-slug" in one cell; the
-        // slug token is the strongest key, so try the whole cell then slugs.
-        const candidates = [
-          cell,
-          ...cell.split(/\s+/).filter((token) => /[-._]/.test(token) && /[a-z]/i.test(token) && !/^\$/.test(token)),
-        ];
-        for (const text of candidates) {
-          const candidate = matchModel(text, models, config.modelAliases);
-          if (candidate) {
-            model = candidate;
+        // Direct match first (handles "claude-opus-5-5" style cells).
+        const direct = matchModel(cell, models, config.modelAliases);
+        if (direct) {
+          model = direct;
+          nameIndex = index;
+          break;
+        }
+        // Cleaned token match (handles "OpenAI GPT 6.1 Sol 75% off").
+        const cleaned = modelToken(cell);
+        if (cleaned) {
+          const tokenMatch = matchModel(cleaned, models, config.modelAliases);
+          if (tokenMatch) {
+            model = tokenMatch;
             nameIndex = index;
             break;
           }
         }
-        if (model) break;
       }
       if (!model) {
-        if (/[a-zA-Z]{3}/.test(cells[0]) && /\d/.test(cells[0])) unmatched.push(cells[0]);
+        if (MODEL_NAME_RE.test(cells[0])) unmatched.push(cells[0]);
         continue;
       }
 
@@ -696,6 +763,29 @@ const PRESETS: Record<string, { adapter: string; config: CrawlConfig }> = {
     adapter: "html-table",
     config: { currency: "USD" },
   },
+  kukuai: {
+    adapter: "json",
+    config: {
+      listPath: "",
+      idPath: "model_name",
+      inputPath: "input_price",
+      outputPath: "output_price",
+      cacheReadPath: "cache_read_price",
+      unit: "per_token",
+      currency: "USD",
+    },
+  },
+  wokey: {
+    adapter: "json",
+    config: {
+      listPath: "",
+      idPath: "id",
+      inputPath: "pricing_skus[0].input_price_per_million",
+      outputPath: "pricing_skus[0].output_price_per_million",
+      unit: "per_1m",
+      currency: "USD",
+    },
+  },
 };
 
 function resolveAdapter(provider: Provider, fetched: Fetched): { adapter: string; config: CrawlConfig } {
@@ -741,6 +831,7 @@ function extractNewApi(body: string, models: ModelIndex, config: CrawlConfig): E
   const rows: RawPrice[] = [];
   const unmatched: string[] = [];
   const seen = new Map<string, RawPrice>();
+  let dropped = 0;
 
   for (const item of list) {
     const name = typeof item?.model_name === "string" ? item.model_name : "";
@@ -755,6 +846,17 @@ function extractNewApi(body: string, models: ModelIndex, config: CrawlConfig): E
     }
     const input = ratio * factor;
     const comp = Number(item.completion_ratio);
+    // New-API admin default for "disabled" models is 37.5 (max ratio in the
+    // 1..37.5 slider) — several relay panels ship their /api/pricing with
+    // flagship rows stuck at that value (verified on 88api.ai, zzshu.cc,
+    // shushutoken.com, jiapi.top, zero.cat, api.layso.ai on 2026-11-11).
+    // such rows are uncalibrated and must not reach the public board:
+    // drop the whole quote when either leg is pinned there.
+    const pinned = ratio === 37.5 || (Number.isFinite(comp) && comp === 37.5);
+    if (pinned) {
+      dropped += 1;
+      continue;
+    }
     const output = Number.isFinite(comp) && comp > 0 ? input * comp : input;
     const cacheRatio = Number(item.cache_ratio);
     const cacheRead = Number.isFinite(cacheRatio) && cacheRatio > 0 ? input * cacheRatio : null;
@@ -763,7 +865,7 @@ function extractNewApi(body: string, models: ModelIndex, config: CrawlConfig): E
     if (!prev || input + output < prev.input + prev.output) seen.set(model.slug, row);
   }
   rows.push(...seen.values());
-  return { rows, adapter: "newapi", detail: `list ${list.length} rows · factor ${factor}`, unmatched };
+  return { rows, adapter: "newapi", detail: `list ${list.length} rows · factor ${factor}${dropped ? ` · ${dropped} pinned(37.5) dropped` : ""}`, unmatched };
 }
 
 function runExtraction(
