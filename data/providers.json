@@ -709,9 +709,9 @@
     "taglineEn": "Claude & Codex CLI gateway with account pooling; rates up to 90% below official.",
     "homepage": "https://clidex.dev",
     "referralUrl": "https://dash.clidex.dev/login?ref=2c765a3f&ch=tokenprice",
-    "pricingUrl": "https://clidex.dev/en/pricing",
+    "pricingUrl": "https://api.clidex.dev/api/v1/pricing",
     "apiBase": "https://api.clidex.dev/v1",
-    "crawlAdapter": "auto",
+    "crawlAdapter": "json",
     "features": {
       "usageBased": true
     },
@@ -723,7 +723,16 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
-    "updatedAt": "2026-11-11T04:04:44.978Z"
+    "updatedAt": "2026-11-11T04:04:44.978Z",
+    "crawlConfig": {
+      "listPath": "prices",
+      "inputPath": "consumer.input",
+      "outputPath": "consumer.output",
+      "cacheReadPath": "consumer.cache_read",
+      "cacheWritePath": "consumer.cache_write",
+      "unit": "per_1m",
+      "currency": "USD"
+    }
   },
   {
     "slug": "foxrouter",
