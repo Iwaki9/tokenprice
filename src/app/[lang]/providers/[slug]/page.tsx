@@ -161,6 +161,31 @@ export default async function ProviderPage({
               {dict.provider.minTopUp}: {money(provider.minTopUp.amount, provider.minTopUp.currency)}
             </p>
           ) : null}
+
+          {provider.billingModel ? (
+            <p className="mt-2 inline-flex items-center gap-1 rounded-full border border-line bg-canvas px-2.5 py-[2px] text-[11px]">
+              <span style={{ color: "var(--color-save)" }}>●</span>
+              {dict.provider.billingModel[provider.billingModel]}
+            </p>
+          ) : null}
+
+          {provider.plans && provider.plans.length > 0 ? (
+            <div className="mt-3 border-t border-line pt-3">
+              <p className="kicker mb-1.5">{dict.provider.plansTitle}</p>
+              <ul className="grid gap-1 text-[12.5px]">
+                {provider.plans.map((plan) => (
+                  <li key={plan.name} className="flex items-baseline justify-between gap-2">
+                    <span>{plan.name}</span>
+                    <span className="tick font-medium">
+                      ${plan.price}
+                      <span className="ml-0.5 text-[10.5px] text-muted">{dict.provider.planPerMonth}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
           {lastObserved ? (
             <p className="mt-1 text-[11.5px] text-muted">
               {dict.provider.lastChecked}: {date(lastObserved, lang)}

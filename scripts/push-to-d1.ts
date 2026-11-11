@@ -135,7 +135,7 @@ if (statsOnly) {
   }
   for (const p of read<any>("providers.json")) {
     inserts.push(
-      `INSERT INTO providers (slug, name, tagline_ru, tagline_en, homepage, referral_url, referral_param, features, tags, min_top_up, api_base, pricing_url, crawl_adapter, crawl_config, status, is_demo, contact_email, created_at, updated_at) VALUES (${q(p.slug)}, ${q(p.name)}, ${q(p.taglineRu)}, ${q(p.taglineEn)}, ${q(p.homepage)}, ${q(p.referralUrl)}, ${q(p.referralParam)}, ${q(p.features ?? {})}, ${q(p.tags ?? [])}, ${q(p.minTopUp ?? null)}, ${q(p.apiBase)}, ${q(p.pricingUrl)}, ${q(p.crawlAdapter)}, ${q(p.crawlConfig ?? null)}, ${q(p.status)}, ${q(p.isDemo ? 1 : 0)}, ${q(p.contactEmail)}, ${q(p.createdAt)}, ${q(p.updatedAt)});`,
+      `INSERT INTO providers (slug, name, tagline_ru, tagline_en, homepage, referral_url, referral_param, features, tags, min_top_up, api_base, pricing_url, crawl_adapter, crawl_config, billing_model, plans, status, is_demo, contact_email, created_at, updated_at) VALUES (${q(p.slug)}, ${q(p.name)}, ${q(p.taglineRu)}, ${q(p.taglineEn)}, ${q(p.homepage)}, ${q(p.referralUrl)}, ${q(p.referralParam)}, ${q(p.features ?? {})}, ${q(p.tags ?? [])}, ${q(p.minTopUp ?? null)}, ${q(p.apiBase)}, ${q(p.pricingUrl)}, ${q(p.crawlAdapter)}, ${q(p.crawlConfig ?? null)}, ${q(p.billingModel ?? null)}, ${q(p.plans ?? null)}, ${q(p.status)}, ${q(p.isDemo ? 1 : 0)}, ${q(p.contactEmail)}, ${q(p.createdAt)}, ${q(p.updatedAt)});`,
     );
   }
   // Keep only the latest row per (provider, model), matching upsertQuote semantics.

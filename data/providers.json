@@ -980,5 +980,48 @@
     "isDemo": false,
     "createdAt": "2026-11-11T17:15:36.899Z",
     "updatedAt": "2026-11-11T18:17:56.682Z"
+  },
+  {
+    "slug": "top-tools-ai",
+    "name": "Top Tools AI",
+    "taglineRu": "Подписки на Claude, GPT и Gemini с фиксированной ценой. Оплата РД-картами и СБП.",
+    "taglineEn": "Flat-rate subscriptions to Claude, GPT and Gemini. RUS card and SBP payments supported.",
+    "homepage": "https://top-tools-ai.com",
+    "referralUrl": "https://top-tools-ai.com/sign-up?ref=TOOL-K4MXJ5FG",
+    "billingModel": "both",
+    "plans": [
+      {
+        "name": "Basic",
+        "price": 4.99,
+        "note": "1M ctx · 10 models"
+      },
+      {
+        "name": "Pro",
+        "price": 9.99,
+        "note": "1M ctx · 10 models"
+      },
+      {
+        "name": "Max",
+        "price": 19.99,
+        "note": "1M ctx · 10 models"
+      }
+    ],
+    "features": {
+      "subscription": true,
+      "card": true,
+      "mirCard": true,
+      "sbp": true,
+      "usageBased": true
+    },
+    "tags": [
+      "openai",
+      "anthropic",
+      "google"
+    ],
+    "minTopUp": null,
+    "status": "active",
+    "isDemo": false,
+    "createdAt": "2026-11-11T19:00:40.754Z",
+    "updatedAt": "2026-11-11T19:00:40.755Z"
   }
 ]

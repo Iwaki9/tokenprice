@@ -43,6 +43,17 @@ export type ProviderFeatures = {
   crypto?: boolean;
   usageBased?: boolean;
   card?: boolean;
+  mirCard?: boolean;
+  sbp?: boolean;
+  usdt?: boolean;
+  subscription?: boolean;
+};
+
+export type ProviderPlan = {
+  name: string;
+  /** Monthly price in USD. */
+  price: number;
+  note?: string;
 };
 
 export type ProviderStatus = "active" | "hidden" | "pending";
@@ -114,6 +125,10 @@ export type Provider = {
   apiBase?: string;
   /** Public pricing page or JSON endpoint the price crawler reads. */
   pricingUrl?: string;
+  /** Billing model: payg (pay-as-you-go), subscription, or both. */
+  billingModel?: "payg" | "subscription" | "both";
+  /** Subscription plans shown on the provider page. */
+  plans?: ProviderPlan[];
   /** How to interpret pricingUrl. `auto` sniffs the response. */
   crawlAdapter?: CrawlAdapter;
   /** Paths/units/aliases for the crawler. Built-in presets fill this in. */

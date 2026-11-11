@@ -8,10 +8,22 @@ import type { Lang } from "@/lib/site";
 import type { BoardView, VendorView } from "@/lib/view";
 import { Empty, VendorMark } from "./ui";
 
-type FilterKey = "card" | "alipay" | "wechat" | "crypto" | "trial" | "invoice" | "refunds" | "new";
+type FilterKey =
+  | "card"
+  | "alipay"
+  | "wechat"
+  | "crypto"
+  | "trial"
+  | "invoice"
+  | "refunds"
+  | "new"
+  | "subscription"
+  | "mirCard";
 
 const FILTERS: { key: FilterKey; labelKey: keyof Dictionary["home"] }[] = [
   { key: "card", labelKey: "filterPayment" },
+  { key: "subscription", labelKey: "filterSubscription" },
+  { key: "mirCard", labelKey: "filterMirCard" },
   { key: "trial", labelKey: "filterTrial" },
   { key: "invoice", labelKey: "filterInvoice" },
   { key: "refunds", labelKey: "filterRefunds" },
@@ -53,6 +65,10 @@ export function HomeBoards({
           return Boolean(row.features.invoice);
         case "refunds":
           return Boolean(row.features.refunds);
+        case "subscription":
+          return Boolean(row.features.subscription);
+        case "mirCard":
+          return Boolean(row.features.mirCard || row.features.sbp);
         default:
           return Boolean(row.features?.[filter]);
       }

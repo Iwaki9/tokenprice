@@ -115,6 +115,8 @@ function rowToProvider(r: Row): Provider {
     pricingUrl: r.pricing_url ? String(r.pricing_url) : undefined,
     crawlAdapter: r.crawl_adapter ? (String(r.crawl_adapter) as Provider["crawlAdapter"]) : undefined,
     crawlConfig: parse(r.crawl_config, undefined),
+    billingModel: r.billing_model ? String(r.billing_model) as Provider["billingModel"] : undefined,
+    plans: parse(r.plans, undefined),
     status: r.status as Provider["status"],
     isDemo: Boolean(r.is_demo),
     contactEmail: r.contact_email ? String(r.contact_email) : undefined,
@@ -264,15 +266,16 @@ export async function upsertProvider(input: Omit<Provider, "createdAt" | "update
       await db
         .prepare(
           `INSERT INTO providers (slug, name, tagline_ru, tagline_en, homepage, referral_url, referral_param,
-             features, tags, min_top_up, api_base, pricing_url, crawl_adapter, crawl_config, status, is_demo,
-             contact_email, created_at, updated_at)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             features, tags, min_top_up, api_base, pricing_url, crawl_adapter, crawl_config,
+             billing_model, plans, status, is_demo, contact_email, created_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
            ON CONFLICT(slug) DO UPDATE SET
              name = excluded.name, tagline_ru = excluded.tagline_ru, tagline_en = excluded.tagline_en,
              homepage = excluded.homepage, referral_url = excluded.referral_url, referral_param = excluded.referral_param,
              features = excluded.features, tags = excluded.tags, min_top_up = excluded.min_top_up,
              api_base = excluded.api_base, pricing_url = excluded.pricing_url, crawl_adapter = excluded.crawl_adapter,
-             crawl_config = excluded.crawl_config, status = excluded.status, is_demo = excluded.is_demo,
+             crawl_config = excluded.crawl_config, billing_model = excluded.billing_model, plans = excluded.plans,
+             status = excluded.status, is_demo = excluded.is_demo,
              contact_email = excluded.contact_email, updated_at = excluded.updated_at`,
         )
         .bind(
@@ -290,6 +293,8 @@ export async function upsertProvider(input: Omit<Provider, "createdAt" | "update
           nullable(merged.pricingUrl),
           nullable(merged.crawlAdapter),
           merged.crawlConfig == null ? null : JSON.stringify(merged.crawlConfig),
+          nullable(merged.billingModel),
+          merged.plans == null ? null : JSON.stringify(merged.plans),
           merged.status,
           merged.isDemo ? 1 : 0,
           nullable(merged.contactEmail),

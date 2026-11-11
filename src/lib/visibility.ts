@@ -36,7 +36,11 @@ export function isListable(provider: Provider, ctx: ListableContext): boolean {
   const now = ctx.now ?? Date.now();
   const probeOk = !!ctx.stats?.lastOkAt && isFresh(ctx.stats.lastOkAt, now);
   const quoteOk = ctx.quotes.some((q) => isFresh(q.observedAt, now));
-  return probeOk || quoteOk;
+  // Subscription providers don't have crawled per-token quotes;
+  // gate on active + referralUrl alone.
+  const subscriptionOk =
+    provider.billingModel !== undefined && provider.status === "active" && !!provider.referralUrl;
+  return probeOk || quoteOk || subscriptionOk;
 }
 
 export function reasonNotListable(provider: Provider, ctx: ListableContext, now = Date.now()): string {
@@ -45,7 +49,9 @@ export function reasonNotListable(provider: Provider, ctx: ListableContext, now 
   if (!provider.referralUrl) return "no referral url";
   const probeOk = !!ctx.stats?.lastOkAt && isFresh(ctx.stats.lastOkAt, now);
   const quoteOk = ctx.quotes.some((q) => isFresh(q.observedAt, now));
-  if (!probeOk && !quoteOk) return "unreachable (no fresh probe or quote)";
+  const subscriptionOk =
+    provider.billingModel !== undefined && provider.status === "active" && !!provider.referralUrl;
+  if (!probeOk && !quoteOk && !subscriptionOk) return "unreachable (no fresh probe or quote)";
   return "";
 }
 
