@@ -512,10 +512,11 @@
       "moonshot"
     ],
     "minTopUp": null,
-    "status": "pending",
+    "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T13:53:56.392Z",
-    "updatedAt": "2026-11-11T13:53:56.392Z"
+    "updatedAt": "2026-11-11T13:53:56.392Z",
+    "referralUrl": "https://crazyrouter.com/sign-up?aff=CjdZ"
   },
   {
     "slug": "flyrouter",
