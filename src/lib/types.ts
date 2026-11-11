@@ -68,6 +68,8 @@ export type CrawlConfig = {
   currency?: "USD" | "CNY" | "RUB";
   /** Source model id → catalogue slug, for names the matcher cannot resolve. */
   modelAliases?: Record<string, string>;
+  /** `newapi` adapter: $ per 1M tokens represented by one unit of model_ratio. */
+  ratioFactor?: number;
 };
 
 /**
@@ -79,6 +81,7 @@ export type CrawlAdapter =
   | "json"
   | "json-ld"
   | "html-table"
+  | "newapi"
   | "deepinfra"
   | "novita"
   | "chutes"

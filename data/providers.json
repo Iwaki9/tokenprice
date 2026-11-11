@@ -733,7 +733,7 @@
     "homepage": "https://foxrouter.org",
     "referralUrl": "https://foxrouter.org/sign-up?aff=rC1D",
     "apiBase": "https://foxrouter.org/v1",
-    "crawlAdapter": "auto",
+    "crawlAdapter": "newapi",
     "features": {
       "usageBased": true
     },
@@ -747,7 +747,8 @@
     "status": "active",
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
-    "updatedAt": "2026-11-11T04:04:44.978Z"
+    "updatedAt": "2026-11-11T04:04:44.978Z",
+    "pricingUrl": "https://foxrouter.org/api/pricing"
   },
   {
     "slug": "xcli",

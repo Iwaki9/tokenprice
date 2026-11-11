@@ -688,6 +688,10 @@ const PRESETS: Record<string, { adapter: string; config: CrawlConfig }> = {
       currency: "RUB",
     },
   },
+  newapi: {
+    adapter: "newapi",
+    config: { ratioFactor: 0.3 },
+  },
   together: {
     adapter: "html-table",
     config: { currency: "USD" },
@@ -717,6 +721,51 @@ function resolveAdapter(provider: Provider, fetched: Fetched): { adapter: string
   return { adapter: "html-table", config };
 }
 
+/**
+ * New API panels (foxrouter and clones) publish /api/pricing in billing
+ * "ratios", not dollars. Their own rendered price page shows
+ * `$ per 1M = model_ratio × factor` (calibrated against foxrouter.org on
+ * 2026-11-11: sonnet-4.5 ratio 1.5 → 0.45, opus-4.6 ratio 2.5 → 0.75,
+ * i.e. factor 0.3). Output = input × completion_ratio, cache read =
+ * input × cache_ratio. Fixed per-call prices (model_price > 0) are skipped.
+ */
+function extractNewApi(body: string, models: ModelIndex, config: CrawlConfig): Extraction {
+  const factor = config.ratioFactor ?? 0.3;
+  let parsed: { data?: any[] };
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return { rows: [], adapter: "newapi", detail: "invalid json", unmatched: [] };
+  }
+  const list = Array.isArray(parsed?.data) ? parsed.data : [];
+  const rows: RawPrice[] = [];
+  const unmatched: string[] = [];
+  const seen = new Map<string, RawPrice>();
+
+  for (const item of list) {
+    const name = typeof item?.model_name === "string" ? item.model_name : "";
+    if (!name) continue;
+    if (Number(item.model_price) > 0) continue; // billed per request, not per token
+    const ratio = Number(item.model_ratio);
+    if (!Number.isFinite(ratio) || ratio <= 0) continue;
+    const model = matchModel(name, models, config.modelAliases);
+    if (!model) {
+      unmatched.push(name);
+      continue;
+    }
+    const input = ratio * factor;
+    const comp = Number(item.completion_ratio);
+    const output = Number.isFinite(comp) && comp > 0 ? input * comp : input;
+    const cacheRatio = Number(item.cache_ratio);
+    const cacheRead = Number.isFinite(cacheRatio) && cacheRatio > 0 ? input * cacheRatio : null;
+    const row: RawPrice = { sourceId: name, modelSlug: model.slug, input, output, cacheRead };
+    const prev = seen.get(model.slug);
+    if (!prev || input + output < prev.input + prev.output) seen.set(model.slug, row);
+  }
+  rows.push(...seen.values());
+  return { rows, adapter: "newapi", detail: `list ${list.length} rows · factor ${factor}`, unmatched };
+}
+
 function runExtraction(
   adapter: string,
   body: string,
@@ -725,6 +774,7 @@ function runExtraction(
 ): Extraction {
   if (adapter === "json") return extractJson(body, models, config, "json");
   if (adapter === "json-ld") return extractJsonLd(body, models, config);
+  if (adapter === "newapi") return extractNewApi(body, models, config);
   return extractHtmlTable(body, models, config);
 }
 
