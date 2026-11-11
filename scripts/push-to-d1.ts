@@ -84,11 +84,25 @@ function runChunks(inserts: string[], label: string) {
   }
   const wranglerBin = path.join(ROOT, "node_modules", "wrangler", "bin", "wrangler.js");
   for (const [index, file] of files.entries()) {
-    execFileSync(process.execPath, [wranglerBin, "d1", "execute", "tokenprice", "--remote", "--file", file], {
-      cwd: ROOT,
-      stdio: "pipe",
-      env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID ?? "" },
-    });
+    // A dropped chunk between parts leaves D1 half-synced (e.g. prices deleted,
+    // not re-inserted), so retry a failing part before giving up.
+    let attempt = 0;
+    for (;;) {
+      attempt += 1;
+      try {
+        execFileSync(process.execPath, [wranglerBin, "d1", "execute", "tokenprice", "--remote", "--file", file], {
+          cwd: ROOT,
+          stdio: "pipe",
+          env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID ?? "" },
+        });
+        break;
+      } catch (error) {
+        if (attempt >= 3) throw error;
+        const waitMs = 5_000 * attempt;
+        console.log(`part ${index + 1} attempt ${attempt} failed, retrying in ${waitMs / 1000}s (${String((error as Error).message).slice(0, 80)})`);
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, waitMs);
+      }
+    }
     console.log(`pushed part ${index + 1}/${files.length}`);
   }
   rmSync(TMP, { recursive: true, force: true });

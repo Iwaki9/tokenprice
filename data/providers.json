@@ -784,5 +784,205 @@
     "isDemo": false,
     "createdAt": "2026-11-11T04:04:44.978Z",
     "updatedAt": "2026-11-11T04:04:44.978Z"
+  },
+  {
+    "slug": "ccsub",
+    "name": "CCSub",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://www.ccsub.net",
+    "pricingUrl": "https://www.ccsub.net/en/pricing",
+    "apiBase": "https://www.ccsub.net/v1",
+    "crawlAdapter": "auto",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "crazyrouter",
+    "name": "Crazyrouter",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://crazyrouter.com",
+    "pricingUrl": "https://crazyrouter.com/api/pricing?lang=en",
+    "apiBase": "https://crazyrouter.com/v1",
+    "crawlAdapter": "newapi",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "flyrouter",
+    "name": "FlyRouter",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://flyrouter.ai",
+    "pricingUrl": "https://flyrouter.ai/prices",
+    "apiBase": "https://flyrouter.ai/v1",
+    "crawlAdapter": "auto",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "kukuai",
+    "name": "kukuai",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://ozlzs.kukuai.fyi",
+    "pricingUrl": "https://ozlzs.kukuai.fyi/api/dist/site/models",
+    "apiBase": "https://ozlzs.kukuai.fyi/v1",
+    "crawlAdapter": "auto",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "modelflare",
+    "name": "Modelflare",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://modelflare.dev",
+    "pricingUrl": "https://modelflare.dev/zh/pricing",
+    "apiBase": "https://modelflare.dev/v1",
+    "crawlAdapter": "auto",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "runapi",
+    "name": "RunAPI",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://runapi.co",
+    "pricingUrl": "https://runapi.co/api/pricing",
+    "apiBase": "https://runapi.co/v1",
+    "crawlAdapter": "newapi",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "tokensmind",
+    "name": "TokensMind",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://tokensmind.ai",
+    "pricingUrl": "https://tokensmind.ai/api/pricing",
+    "apiBase": "https://tokensmind.ai/v1",
+    "crawlAdapter": "newapi",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
+  },
+  {
+    "slug": "wokey",
+    "name": "Wokey",
+    "taglineRu": "Найден в каталоге AIPriceRank; цены публикуются на сайте. На ревью.",
+    "taglineEn": "Harvested from the AIPriceRank directory; publishes prices on their site. Under review.",
+    "homepage": "https://wokey.ai",
+    "pricingUrl": "https://wokey.ai/api/models/pricing?output_modalities=text",
+    "apiBase": "https://wokey.ai/v1",
+    "crawlAdapter": "auto",
+    "features": {
+      "usageBased": true
+    },
+    "tags": [
+      "anthropic",
+      "openai",
+      "google",
+      "xai",
+      "deepseek",
+      "moonshot"
+    ],
+    "minTopUp": null,
+    "status": "pending",
+    "isDemo": false,
+    "createdAt": "2026-11-11T13:53:56.392Z",
+    "updatedAt": "2026-11-11T13:53:56.392Z"
   }
 ]

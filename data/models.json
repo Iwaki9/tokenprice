@@ -1060,5 +1060,56 @@
     "featured": true,
     "summaryRu": "Claude Haiku 4.5 от Anthropic. Официальная цена $1 за 1M входных и $5 за 1M выходных токенов.",
     "summaryEn": "Claude Haiku 4.5 by Anthropic. Official list price: $1 per 1M input and $5 per 1M output tokens."
+  },
+  {
+    "slug": "claude-opus-4-7",
+    "vendor": "anthropic",
+    "name": "Claude Opus 4.7",
+    "official": {
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 4.7 от Anthropic. Официальная цена $5 за 1M входных и $25 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 4.7 by Anthropic. Official list price: $5 per 1M input and $25 per 1M output tokens."
+  },
+  {
+    "slug": "claude-opus-4-8",
+    "vendor": "anthropic",
+    "name": "Claude Opus 4.8",
+    "official": {
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 4.8 от Anthropic. Официальная цена $5 за 1M входных и $25 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 4.8 by Anthropic. Official list price: $5 per 1M input and $25 per 1M output tokens."
+  },
+  {
+    "slug": "claude-opus-5",
+    "vendor": "anthropic",
+    "name": "Claude Opus 5",
+    "official": {
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing"
+    },
+    "contextWindow": 400000,
+    "status": "ga",
+    "featured": true,
+    "summaryRu": "Claude Opus 5 от Anthropic. Официальная цена $5 за 1M входных и $25 за 1M выходных токенов.",
+    "summaryEn": "Claude Opus 5 by Anthropic. Official list price: $5 per 1M input and $25 per 1M output tokens."
   }
 ]

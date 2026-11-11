@@ -17,6 +17,9 @@ const add = [
   { slug: "claude-sonnet-4-6", vendor: "anthropic", name: "Claude Sonnet 4.6", input: 3, output: 15, cacheRead: 0.3, cacheWrite: 3.75, sourceUrl: ANT, status: "ga", note: NOTE },
   { slug: "claude-sonnet-5", vendor: "anthropic", name: "Claude Sonnet 5", input: 2, output: 10, cacheRead: 0.2, cacheWrite: 2.5, sourceUrl: ANT, status: "ga", note: NOTE },
   { slug: "claude-haiku-4-5", vendor: "anthropic", name: "Claude Haiku 4.5", input: 1, output: 5, cacheRead: 0.1, cacheWrite: 1.25, sourceUrl: ANT, status: "ga", note: NOTE },
+  { slug: "claude-opus-4-7", vendor: "anthropic", name: "Claude Opus 4.7", input: 5, output: 25, cacheRead: 0.5, cacheWrite: 6.25, sourceUrl: ANT, status: "ga", note: NOTE },
+  { slug: "claude-opus-4-8", vendor: "anthropic", name: "Claude Opus 4.8", input: 5, output: 25, cacheRead: 0.5, cacheWrite: 6.25, sourceUrl: ANT, status: "ga", note: NOTE },
+  { slug: "claude-opus-5", vendor: "anthropic", name: "Claude Opus 5", input: 5, output: 25, cacheRead: 0.5, cacheWrite: 6.25, sourceUrl: ANT, status: "ga", note: NOTE },
 ];
 
 let added = 0;

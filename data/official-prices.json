@@ -419,6 +419,42 @@
       "sourceUrl": "https://www.anthropic.com/pricing",
       "status": "ga",
       "note": "Официальная цена сверена 2026-11-11 по публичному прайс-API Clidex (api.clidex.dev/api/v1/pricing); модель может быть снята вендором с продажи."
+    },
+    {
+      "slug": "claude-opus-4-7",
+      "vendor": "anthropic",
+      "name": "Claude Opus 4.7",
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "status": "ga",
+      "note": "Официальная цена сверена 2026-11-11 по публичному прайс-API Clidex (api.clidex.dev/api/v1/pricing); модель может быть снята вендором с продажи."
+    },
+    {
+      "slug": "claude-opus-4-8",
+      "vendor": "anthropic",
+      "name": "Claude Opus 4.8",
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "status": "ga",
+      "note": "Официальная цена сверена 2026-11-11 по публичному прайс-API Clidex (api.clidex.dev/api/v1/pricing); модель может быть снята вендором с продажи."
+    },
+    {
+      "slug": "claude-opus-5",
+      "vendor": "anthropic",
+      "name": "Claude Opus 5",
+      "input": 5,
+      "output": 25,
+      "cacheRead": 0.5,
+      "cacheWrite": 6.25,
+      "sourceUrl": "https://www.anthropic.com/pricing",
+      "status": "ga",
+      "note": "Официальная цена сверена 2026-11-11 по публичному прайс-API Clidex (api.clidex.dev/api/v1/pricing); модель может быть снята вендором с продажи."
     }
   ]
 }

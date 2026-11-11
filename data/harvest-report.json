@@ -1,0 +1,579 @@
+{
+  "generatedAt": "2026-11-11T13:53:56.384Z",
+  "sites": [
+    {
+      "siteId": "4router",
+      "name": "4Router",
+      "sourceUrl": "https://4router.ai/pricing",
+      "homepage": "https://4router.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "aiide",
+      "name": "Aiide",
+      "sourceUrl": "https://www.aiide.com/zh/pricing",
+      "homepage": "https://www.aiide.com",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "buzzai",
+      "name": "BUZZ",
+      "sourceUrl": "https://buzzai.cc/models",
+      "homepage": "https://buzzai.cc",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "ccsub",
+      "name": "CCSub",
+      "sourceUrl": "https://www.ccsub.net/en/pricing",
+      "homepage": "https://www.ccsub.net",
+      "classify": "html-table",
+      "note": "html, tables=2, $=136, ¥=122",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "codimixa",
+      "name": "Codimixa",
+      "sourceUrl": "https://console.codimixa.com/pricing",
+      "homepage": "https://console.codimixa.com",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "crazyrouter",
+      "name": "Crazyrouter",
+      "sourceUrl": "https://crazyrouter.com/api/pricing?lang=en",
+      "homepage": "https://crazyrouter.com",
+      "classify": "newapi",
+      "note": "170 rows, ratio-based (calibrate ratioFactor per panel)",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "cubence",
+      "name": "Cubence",
+      "sourceUrl": "https://cubence.ai/dashboard/model-plaza",
+      "homepage": "https://cubence.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=7, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "eirouter",
+      "name": "eirouter.ai",
+      "sourceUrl": "https://eirouter.ai/#pricing",
+      "homepage": "https://eirouter.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "flashcoding",
+      "name": "FlashCoding",
+      "sourceUrl": "https://flashcoding.ai/model-plaza",
+      "homepage": "https://flashcoding.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=3",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "flyrouter",
+      "name": "FlyRouter",
+      "sourceUrl": "https://flyrouter.ai/prices",
+      "homepage": "https://flyrouter.ai",
+      "classify": "html-table",
+      "note": "html, tables=2, $=1112, ¥=8",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "grok-4-7"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "foxrouter",
+      "name": "FoxRouter",
+      "sourceUrl": "https://foxrouter.org/pricing",
+      "homepage": "https://foxrouter.org",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": true
+    },
+    {
+      "siteId": "kukuai",
+      "name": "kukuai",
+      "sourceUrl": "https://ozlzs.kukuai.fyi/api/dist/site/models",
+      "homepage": "https://ozlzs.kukuai.fyi",
+      "classify": "json",
+      "note": "116 rows, keys: billing_type,cache_creation_price,cache_creation_price_1h,cache_read_price,category,channels,display_name,fixed_price,input_price,is_per_cal",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "modelflare",
+      "name": "Modelflare",
+      "sourceUrl": "https://modelflare.dev/zh/pricing",
+      "homepage": "https://modelflare.dev",
+      "classify": "html-table",
+      "note": "html, tables=1, $=25, ¥=1",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "noonoo",
+      "name": "noonoo.ai",
+      "sourceUrl": "https://noonoo.ai/#pricing",
+      "homepage": "https://noonoo.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=1, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "omniakey",
+      "name": "OmniaKey",
+      "sourceUrl": "https://omniakey.com/pricing.md",
+      "homepage": "https://omniakey.com",
+      "classify": "unknown",
+      "note": "content-type text/markdown",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "openmodel",
+      "name": "OpenModel",
+      "sourceUrl": "https://www.openmodel.ai/model-pricing",
+      "homepage": "https://www.openmodel.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=167, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "openox",
+      "name": "OpenOx",
+      "sourceUrl": "https://openox.tech/api/public/pricing-catalog",
+      "homepage": "https://openox.tech",
+      "classify": "unknown",
+      "note": "json but no array found",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "orbis",
+      "name": "Orbis",
+      "sourceUrl": "https://orbiorbi.com/pricing",
+      "homepage": "https://orbiorbi.com",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "runapi",
+      "name": "RunAPI",
+      "sourceUrl": "https://runapi.co/api/pricing",
+      "homepage": "https://runapi.co",
+      "classify": "newapi",
+      "note": "202 rows, ratio-based (calibrate ratioFactor per panel)",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "sudocode",
+      "name": "SudoCode",
+      "sourceUrl": "https://sudocode.chat/pricing",
+      "homepage": "https://sudocode.chat",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "deepseek-v4-pro"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "tken",
+      "name": "Token-AI",
+      "sourceUrl": "https://tken.lol/pricing",
+      "homepage": "https://tken.lol",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "tokenmix",
+      "name": "TokenMix",
+      "sourceUrl": "https://tokenmix.ai/models/anthropic/claude-opus-5-5",
+      "homepage": "https://tokenmix.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=18, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-3-8-flash",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "tokensmind",
+      "name": "TokensMind",
+      "sourceUrl": "https://tokensmind.ai/api/pricing",
+      "homepage": "https://tokensmind.ai",
+      "classify": "newapi",
+      "note": "82 rows, ratio-based (calibrate ratioFactor per panel)",
+      "models": [
+        "claude-opus-5-5",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "wokey",
+      "name": "Wokey",
+      "sourceUrl": "https://wokey.ai/api/models/pricing?output_modalities=text",
+      "homepage": "https://wokey.ai",
+      "classify": "json",
+      "note": "48 rows, UNRECOGNISED keys: id,name,owned_by,providers,object,available,currency,pricing_mode,tags,architecture,pricing_skus",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "xclis",
+      "name": "Xcli.si",
+      "sourceUrl": "https://xclis.ai/api/sub2api/api/v1/public/pricing",
+      "homepage": "https://xclis.ai",
+      "classify": "unknown",
+      "note": "json but no array found",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "xycai",
+      "name": "XycAi",
+      "sourceUrl": "https://www.xyc.ai/model-square",
+      "homepage": "https://www.xyc.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "ykh",
+      "name": "YKH.AI",
+      "sourceUrl": "https://api.ykh.ai/pricing",
+      "homepage": "https://api.ykh.ai",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "gemini-3-8-flash"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "yomiapi",
+      "name": "Yomi API",
+      "sourceUrl": "https://console.yomiapi.com/models",
+      "homepage": "https://console.yomiapi.com",
+      "classify": "unknown",
+      "note": "html, tables=0, $=0, ¥=0",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gpt-5-6-luna",
+        "gemini-4-argon",
+        "gemini-3-8-flash",
+        "grok-4-7",
+        "deepseek-v4-pro",
+        "kimi-k3"
+      ],
+      "alreadyKnown": false
+    },
+    {
+      "siteId": "zivv",
+      "name": "Zivv",
+      "sourceUrl": "https://zivv.pro/model-hub/",
+      "homepage": "https://zivv.pro",
+      "classify": "unknown",
+      "note": "fetch failed: fetch failed",
+      "models": [
+        "claude-opus-5-5",
+        "claude-fable-5-2",
+        "claude-sonnet-5-5",
+        "gpt-6-1-sol",
+        "gpt-6-astra",
+        "gemini-4-argon",
+        "deepseek-v4-pro"
+      ],
+      "alreadyKnown": false
+    }
+  ]
+}
