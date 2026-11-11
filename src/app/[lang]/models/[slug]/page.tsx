@@ -9,12 +9,12 @@ import { modelFaq, modelSeoParagraph } from "@/lib/seo-copy";
 import { date, fill, latency, pct, tokens, usd } from "@/lib/format";
 import { dictionaries } from "@/lib/i18n";
 import { buildBoard, mixById } from "@/lib/ranking";
-import { computeStats, readProbes, type MonitorStats } from "@/lib/monitoring";
+import { readStatsMap } from "@/lib/monitoring";
 import { getDb } from "@/lib/store";
 import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 const SORTS = {
   tokens_desc: "Токенов на бюджет",
@@ -84,17 +84,7 @@ export default async function ModelPage({
   const minUptime = Number(query.minUptime) || 0;
   const maxLatency = Number(query.maxLatency) || 0;
 
-  const probes = await readProbes();
-  const statsByProvider = new Map<string, MonitorStats>();
-  const grouped = new Map<string, typeof probes>();
-  for (const probe of probes) {
-    const list = grouped.get(probe.providerSlug) ?? [];
-    list.push(probe);
-    grouped.set(probe.providerSlug, list);
-  }
-  for (const [providerSlug, list] of grouped) {
-    statsByProvider.set(providerSlug, computeStats(list));
-  }
+  const statsByProvider = await readStatsMap();
 
   const rows = buildBoard(model, providers, quotes, { budget, ratio }).map((row) => {
     const stats = statsByProvider.get(row.provider.slug) ?? null;

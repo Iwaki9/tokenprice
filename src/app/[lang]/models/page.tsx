@@ -7,7 +7,7 @@ import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 import type { VendorView } from "@/lib/view";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,

@@ -47,6 +47,7 @@ async function writeFileCollection<T>(collection: Collection, items: T[]) {
   const tmp = `${target}.${process.pid}.${Date.now()}.tmp`;
   await fs.writeFile(tmp, `${JSON.stringify(items, null, 2)}\n`, "utf8");
   await fs.rename(tmp, target);
+  invalidateDbCache();
 }
 
 /**
@@ -157,8 +158,20 @@ async function d1All<T = Row>(db: D1Like, sql: string, ...binds: unknown[]): Pro
   return result.results;
 }
 
+const DB_TTL_MS = 60_000;
+let dbCache: { at: number; value: Database } | null = null;
+
+function invalidateDbCache() {
+  dbCache = null;
+}
+
 export const getDb = cache(async (): Promise<Database> => {
+  // Isolate-level TTL cache: D1 free tier is metered by rows read, and every
+  // ISR revalidation would otherwise re-fetch all five collections.
+  const now = Date.now();
+  if (dbCache && now - dbCache.at < DB_TTL_MS) return dbCache.value;
   const db = await getD1();
+  let value: Database;
   if (db) {
     const [vendors, models, providers, prices, submissions] = await Promise.all([
       d1All(db, "SELECT * FROM vendors ORDER BY name"),
@@ -167,23 +180,25 @@ export const getDb = cache(async (): Promise<Database> => {
       d1All(db, "SELECT * FROM prices"),
       d1All(db, "SELECT * FROM submissions ORDER BY created_at DESC"),
     ]);
-    return {
+    value = {
       vendors: vendors.map(rowToVendor),
       models: models.map(rowToModel),
       providers: providers.map(rowToProvider),
       prices: prices.map(rowToQuote),
       submissions: submissions.map(rowToSubmission),
     };
+  } else {
+    const [vendors, models, providers, prices, submissions] = await Promise.all([
+      readFileCollection<Vendor>("vendors"),
+      readFileCollection<Model>("models"),
+      readFileCollection<Provider>("providers"),
+      readFileCollection<PriceQuote>("prices"),
+      readFileCollection<Submission>("submissions"),
+    ]);
+    value = { vendors, models, providers, prices, submissions };
   }
-
-  const [vendors, models, providers, prices, submissions] = await Promise.all([
-    readFileCollection<Vendor>("vendors"),
-    readFileCollection<Model>("models"),
-    readFileCollection<Provider>("providers"),
-    readFileCollection<PriceQuote>("prices"),
-    readFileCollection<Submission>("submissions"),
-  ]);
-  return { vendors, models, providers, prices, submissions };
+  dbCache = { at: now, value };
+  return value;
 });
 
 /* ----------------------------------------------------------------- helpers */
@@ -282,6 +297,7 @@ export async function upsertProvider(input: Omit<Provider, "createdAt" | "update
           merged.updatedAt,
         )
         .run();
+      invalidateDbCache();
       return input.slug;
     }
 
@@ -302,6 +318,7 @@ export async function deleteProvider(slug: string) {
         db.prepare("DELETE FROM providers WHERE slug = ?").bind(slug),
         db.prepare("DELETE FROM prices WHERE provider_slug = ?").bind(slug),
       ]);
+      invalidateDbCache();
       return;
     }
     const [providers, prices] = await Promise.all([
@@ -344,6 +361,7 @@ export async function upsertQuote(quote: PriceQuote) {
           nullable(quote.note),
         )
         .run();
+      invalidateDbCache();
       return;
     }
     const prices = await readFileCollection<PriceQuote>("prices");
@@ -364,6 +382,7 @@ export async function deleteQuote(providerSlug: string, modelSlug: string) {
         .prepare("DELETE FROM prices WHERE provider_slug = ? AND model_slug = ?")
         .bind(providerSlug, modelSlug)
         .run();
+      invalidateDbCache();
       return;
     }
     const prices = await readFileCollection<PriceQuote>("prices");
@@ -402,6 +421,7 @@ export async function addSubmission(
           submission.createdAt,
         )
         .run();
+      invalidateDbCache();
       return submission.id;
     }
     const submissions = await readFileCollection<Submission>("submissions");
@@ -416,6 +436,7 @@ export async function setSubmissionStatus(id: string, status: Submission["status
     const db = await getD1();
     if (db) {
       await db.prepare("UPDATE submissions SET status = ? WHERE id = ?").bind(status, id).run();
+      invalidateDbCache();
       return;
     }
     const submissions = await readSubmissionsRaw();

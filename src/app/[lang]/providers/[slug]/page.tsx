@@ -5,12 +5,12 @@ import { DemoTag, MonitorBadge, SectionHead, Sparkline, VendorMark } from "@/com
 import { date, dateTime, fill, latency, money, pct, usd } from "@/lib/format";
 import { dictionaries } from "@/lib/i18n";
 import { blendedCost } from "@/lib/ranking";
-import { computeStats, readProbes } from "@/lib/monitoring";
+import { EMPTY_STATS, readStatsMap } from "@/lib/monitoring";
 import { getDb } from "@/lib/store";
 import { isLang } from "@/lib/site";
 import { isListable } from "@/lib/visibility";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -50,12 +50,11 @@ export default async function ProviderPage({
   const modelBySlug = new Map(db.models.map((m) => [m.slug, m]));
   const quotes = db.prices.filter((q) => q.providerSlug === provider.slug);
 
-  const allProbes = await readProbes();
-  const probes = allProbes.filter((p) => p.providerSlug === provider.slug);
-  const stats = computeStats(probes);
+  const statsMap = await readStatsMap();
+  const stats = statsMap.get(provider.slug) ?? EMPTY_STATS;
 
   // hidden until it has a referral link and is confirmed reachable
-  if (!isListable(provider, { stats, quotes })) notFound();
+  if (!isListable(provider, { stats: statsMap.get(provider.slug) ?? null, quotes })) notFound();
 
   const groupedQuotes = new Map<string, typeof quotes>();
   for (const quote of quotes) {
@@ -75,18 +74,12 @@ export default async function ProviderPage({
     if (official > 0) bestSaving = Math.max(bestSaving, 1 - own / official);
   }
 
-  const probesByProvider = new Map<string, typeof allProbes>();
-  for (const probe of allProbes) {
-    const list = probesByProvider.get(probe.providerSlug) ?? [];
-    list.push(probe);
-    probesByProvider.set(probe.providerSlug, list);
-  }
   const alternatives = db.providers
     .filter(
       (p) =>
         p.slug !== provider.slug &&
         isListable(p, {
-          stats: probesByProvider.has(p.slug) ? computeStats(probesByProvider.get(p.slug)!) : null,
+          stats: statsMap.get(p.slug) ?? null,
           quotes: db.prices.filter((q) => q.providerSlug === p.slug),
         }) &&
         p.tags.some((tag) => provider.tags.includes(tag)),

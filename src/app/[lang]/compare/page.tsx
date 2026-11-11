@@ -5,7 +5,7 @@ import { getDb } from "@/lib/store";
 import { getListableProviders } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,

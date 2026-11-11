@@ -4,6 +4,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { computeStats } from "../src/lib/monitoring";
 
 const ROOT = path.join(__dirname, "..");
 const DATA = path.join(ROOT, "data");
@@ -54,15 +55,32 @@ for (const p of quotes.values()) {
   );
 }
 // Probes: last 30 days only, to keep D1 small.
+// provider_stats: precomputed aggregates so public pages never scan probes.
 const probeFile = path.join(DATA, "probes.jsonl");
 if (existsSync(probeFile)) {
   const cutoff = Date.now() - 30 * 86_400_000;
   const lines = readFileSync(probeFile, "utf8").split("\n").filter(Boolean);
+  const pushed: { providerSlug: string; at: string; ok: boolean; status: number | null; latencyMs: number | null; error?: string }[] = [];
   for (const line of lines) {
     const p = JSON.parse(line);
     if (new Date(p.at).getTime() < cutoff) continue;
+    pushed.push(p);
     inserts.push(
       `INSERT INTO probes (provider_slug, at, ok, status, latency_ms, error) VALUES (${q(p.providerSlug)}, ${q(p.at)}, ${q(p.ok ? 1 : 0)}, ${q(p.status)}, ${q(p.latencyMs)}, ${q(p.error)});`,
+    );
+  }
+  const byProvider = new Map<string, typeof pushed>();
+  for (const p of pushed) {
+    const list = byProvider.get(p.providerSlug) ?? [];
+    list.push(p);
+    byProvider.set(p.providerSlug, list);
+  }
+  inserts.push("DELETE FROM provider_stats;");
+  const computedAt = new Date().toISOString();
+  for (const [slug, list] of byProvider) {
+    const st = computeStats(list);
+    inserts.push(
+      `INSERT INTO provider_stats (provider_slug, status, uptime7d, uptime30d, p95, median, composite, samples24h, spark, last_at, last_ok_at, computed_at) VALUES (${q(slug)}, ${q(st.status)}, ${q(st.uptime7d)}, ${q(st.uptime30d)}, ${q(st.p95)}, ${q(st.median)}, ${q(st.composite)}, ${q(st.samples24h)}, ${q(st.spark)}, ${q(st.lastAt)}, ${q(st.lastOkAt)}, ${q(computedAt)}) ON CONFLICT(provider_slug) DO UPDATE SET status = excluded.status, uptime7d = excluded.uptime7d, uptime30d = excluded.uptime30d, p95 = excluded.p95, median = excluded.median, composite = excluded.composite, samples24h = excluded.samples24h, spark = excluded.spark, last_at = excluded.last_at, last_ok_at = excluded.last_ok_at, computed_at = excluded.computed_at;`,
     );
   }
 }
@@ -86,4 +104,4 @@ for (const [index, file] of files.entries()) {
   console.log(`pushed part ${index + 1}/${files.length}`);
 }
 rmSync(TMP, { recursive: true, force: true });
-console.log(`push-to-d1: ${inserts.length - 5} rows synced`);
+console.log(`push-to-d1: ${inserts.filter((s) => !s.startsWith("DELETE FROM")).length} rows synced`);

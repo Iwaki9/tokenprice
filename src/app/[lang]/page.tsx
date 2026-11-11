@@ -9,7 +9,7 @@ import { getListableProviders } from "@/lib/visibility";
 import { isLang, site } from "@/lib/site";
 import { toRowView, type BoardView, type VendorView } from "@/lib/view";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function HomePage({
   params,

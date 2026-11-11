@@ -10,7 +10,7 @@ import { getListableProviders } from "@/lib/visibility";
 import { cheapestCopy, modelFaq } from "@/lib/seo-copy";
 import { isLang, site } from "@/lib/site";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 async function load(slug: string) {
   const db = await getDb();

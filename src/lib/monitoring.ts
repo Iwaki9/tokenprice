@@ -32,7 +32,21 @@ const DATA_DIR = process.env.DATA_DIR
 
 const PROBE_FILE = path.join(DATA_DIR, "probes.jsonl");
 
+/* ------------------------------------------------------------------ caches
+ * D1 charges per row read (free tier: 5M/day). Pages must never re-scan the
+ * probe history per request: within one isolate we serve precomputed stats
+ * and raw probes from short-lived caches, and the public site reads the tiny
+ * provider_stats table instead of probes at all. */
+
+const STATS_TTL_MS = 60_000;
+const PROBES_TTL_MS = 120_000;
+
+let probesCache: { at: number; value: Probe[] } | null = null;
+let statsCache: { at: number; value: Map<string, MonitorStats> } | null = null;
+
 export async function readProbes(limit = 60_000): Promise<Probe[]> {
+  const now = Date.now();
+  if (probesCache && now - probesCache.at < PROBES_TTL_MS) return probesCache.value;
   const db = await getD1();
   if (db) {
     const result = await db
@@ -41,7 +55,7 @@ export async function readProbes(limit = 60_000): Promise<Probe[]> {
       )
       .bind(limit)
       .all<Record<string, unknown>>();
-    return result.results
+    const probes = result.results
       .map((r) => ({
         providerSlug: String(r.provider_slug),
         at: String(r.at),
@@ -51,6 +65,8 @@ export async function readProbes(limit = 60_000): Promise<Probe[]> {
         error: r.error ? String(r.error) : undefined,
       }))
       .reverse();
+    probesCache = { at: now, value: probes };
+    return probes;
   }
   try {
     const raw = await fs.readFile(/*turbopackIgnore: true*/ PROBE_FILE, "utf8");
@@ -80,6 +96,56 @@ export async function appendProbes(probes: Probe[]) {
   await fs.mkdir(DATA_DIR, { recursive: true });
   const payload = probes.map((p) => JSON.stringify(p)).join("\n");
   await fs.appendFile(PROBE_FILE, `${payload}\n`, "utf8");
+}
+
+/**
+ * Map of per-provider monitoring stats for public pages.
+ * On Cloudflare this reads the tiny provider_stats table (written by the
+ * push job); locally it recomputes from probes.jsonl. Both are isolate-cached.
+ */
+export async function readStatsMap(): Promise<Map<string, MonitorStats>> {
+  const now = Date.now();
+  if (statsCache && now - statsCache.at < STATS_TTL_MS) return statsCache.value;
+  const db = await getD1();
+  const map = new Map<string, MonitorStats>();
+  if (db) {
+    const rows = await db
+      .prepare(
+        "SELECT provider_slug, status, uptime7d, uptime30d, p95, median, composite, samples24h, spark, last_at, last_ok_at FROM provider_stats",
+      )
+      .all<Record<string, unknown>>();
+    for (const r of rows.results) {
+      let spark: number[] = [];
+      try {
+        spark = JSON.parse(String(r.spark || "[]"));
+      } catch {
+        spark = [];
+      }
+      map.set(String(r.provider_slug), {
+        status: String(r.status) as MonitorStatus,
+        uptime7d: r.uptime7d == null ? null : Number(r.uptime7d),
+        uptime30d: r.uptime30d == null ? null : Number(r.uptime30d),
+        p95: r.p95 == null ? null : Number(r.p95),
+        median: r.median == null ? null : Number(r.median),
+        composite: r.composite == null ? null : Number(r.composite),
+        lastAt: r.last_at ? String(r.last_at) : null,
+        lastOkAt: r.last_ok_at ? String(r.last_ok_at) : null,
+        samples24h: Number(r.samples24h ?? 0),
+        spark: Array.isArray(spark) ? spark.map(Number) : [],
+      });
+    }
+  } else {
+    const probes = await readProbes();
+    const grouped = new Map<string, Probe[]>();
+    for (const probe of probes) {
+      const list = grouped.get(probe.providerSlug) ?? [];
+      list.push(probe);
+      grouped.set(probe.providerSlug, list);
+    }
+    for (const [slug, list] of grouped) map.set(slug, computeStats(list));
+  }
+  statsCache = { at: now, value: map };
+  return map;
 }
 
 function percentile(values: number[], p: number) {

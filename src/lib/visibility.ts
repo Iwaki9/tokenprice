@@ -1,5 +1,5 @@
 import type { MonitorStats } from "./monitoring";
-import { computeStats, readProbes } from "./monitoring";
+import { readStatsMap } from "./monitoring";
 import { getDb } from "./store";
 import type { PriceQuote, Provider } from "./types";
 
@@ -54,20 +54,11 @@ export function reasonNotListable(provider: Provider, ctx: ListableContext, now 
 
 export async function getListableProviders(): Promise<Provider[]> {
   const db = await getDb();
-  const probes = await readProbes();
-  const grouped = new Map<string, typeof probes>();
-  for (const probe of probes) {
-    const list = grouped.get(probe.providerSlug) ?? [];
-    list.push(probe);
-    grouped.set(probe.providerSlug, list);
-  }
+  const stats = await readStatsMap();
   const now = Date.now();
   return db.providers.filter((p) =>
     isListable(p, {
-      stats: (() => {
-        const list = grouped.get(p.slug);
-        return list ? computeStats(list) : null;
-      })(),
+      stats: stats.get(p.slug) ?? null,
       quotes: db.prices.filter((q) => q.providerSlug === p.slug),
       now,
     }),

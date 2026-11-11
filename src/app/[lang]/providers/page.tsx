@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ProviderList } from "@/components/provider-list";
 import { dictionaries } from "@/lib/i18n";
-import { computeStats, readProbes, type MonitorStats } from "@/lib/monitoring";
+import { readStatsMap } from "@/lib/monitoring";
 import { blendedCost } from "@/lib/ranking";
 import { getDb } from "@/lib/store";
 import { isListable } from "@/lib/visibility";
 import { isLang } from "@/lib/site";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -38,15 +38,7 @@ export default async function ProvidersPage({
   const dict = dictionaries[lang];
   const db = await getDb();
 
-  const probes = await readProbes();
-  const grouped = new Map<string, typeof probes>();
-  for (const probe of probes) {
-    const list = grouped.get(probe.providerSlug) ?? [];
-    list.push(probe);
-    grouped.set(probe.providerSlug, list);
-  }
-  const stats = new Map<string, MonitorStats>();
-  for (const [slug, list] of grouped) stats.set(slug, computeStats(list));
+  const stats = await readStatsMap();
 
   const modelsBySlug = new Map(db.models.map((m) => [m.slug, m]));
 
