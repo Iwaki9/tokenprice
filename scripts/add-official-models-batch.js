@@ -29,6 +29,6 @@ for (const m of add) {
   db.models.push(m);
   added += 1;
 }
-db.checkedAt = new Date().toISOString().slice(0, 10);
+if (added > 0) db.checkedAt = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(file, JSON.stringify(db, null, 2) + "\n");
 console.log(`official-prices: +${added} (total ${db.models.length})`);

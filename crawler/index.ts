@@ -49,11 +49,11 @@ const flagValue = (name: string) => {
 const dry = flag("dry");
 const verbose = flag("verbose");
 const includeDemo = flag("include-demo");
-// --only accepts a single slug or a comma-separated list.
+// --only accepts commas or whitespace (PowerShell's npx.ps1 joins bare comma lists).
 const onlySet = flagValue("only")
   ? new Set(
       flagValue("only")!
-        .split(",")
+        .split(/[,\s]+/)
         .map((s) => s.trim())
         .filter(Boolean),
     )
